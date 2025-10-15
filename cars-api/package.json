@@ -1,0 +1,17 @@
+{
+  "name": "example api for cars",
+  "version": "1.0.0",
+  "description": "example api for cars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mika.rinne@oracle.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "swagger-doc": "^0.3.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  }
+}

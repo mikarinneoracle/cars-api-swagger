@@ -1,0 +1,177 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 605px;
+}
+
+.u-section-1 .u-text-1 {
+  margin: 0 526px 0 8px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 437px;
+  height: 344px;
+  margin: 19px auto 0 8px;
+}
+
+.u-section-1 .u-text-2 {
+  margin: -318px 179px 0 503px;
+}
+
+.u-section-1 .u-text-3 {
+  margin: 23px 305px 0 auto;
+}
+
+.u-section-1 .u-text-4 {
+  margin: 29px 125px 0 507px;
+}
+
+.u-section-1 .u-image-2 {
+  width: 219px;
+  height: 68px;
+  margin: 54px auto 0 240px;
+}
+
+.u-section-1 .u-icon-1 {
+  width: 64px;
+  height: 64px;
+  margin: -104px 391px 0 auto;
+}
+
+.u-section-1 .u-text-5 {
+  margin: -17px 810px 0 45px;
+}
+
+.u-section-1 .u-image-3 {
+  width: 82px;
+  height: 42px;
+  margin: 78px 32px 0 auto;
+}
+
+.u-section-1 .u-text-6 {
+  font-size: 0.875rem;
+  margin: -32px 105px 49px auto;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 334px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-image-1 {
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-right: 79px;
+    margin-left: 403px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 25px;
+    margin-left: 407px;
+  }
+
+  .u-section-1 .u-icon-1 {
+    margin-right: 322px;
+  }
+
+  .u-section-1 .u-text-5 {
+    margin-right: 655px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 114px;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-right: 0;
+    margin-left: 262px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 234px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-right: 0;
+    margin-left: 212px;
+  }
+
+  .u-section-1 .u-icon-1 {
+    margin-right: 247px;
+  }
+
+  .u-section-1 .u-text-5 {
+    margin-right: 435px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-text-1 {
+    margin-right: 0;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-left: 82px;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 176px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-left: 32px;
+  }
+
+  .u-section-1 .u-icon-1 {
+    margin-right: 185px;
+  }
+
+  .u-section-1 .u-text-5 {
+    margin-right: 255px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 529px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-top: 2px;
+  }
+
+  .u-section-1 .u-image-1 {
+    width: 340px;
+    height: 268px;
+    margin-top: 39px;
+  }
+
+  .u-section-1 .u-text-2 {
+    margin-top: -276px;
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-text-3 {
+    margin-right: 111px;
+  }
+
+  .u-section-1 .u-text-4 {
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-image-2 {
+    margin-left: 121px;
+  }
+
+  .u-section-1 .u-icon-1 {
+    margin-right: 116px;
+  }
+
+  .u-section-1 .u-text-5 {
+    margin-right: 55px;
+  }
+}
