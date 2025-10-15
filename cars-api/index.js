@@ -101,6 +101,8 @@ app.use(
  *             example: { "car": { "name": "Toyota" } }
  *       401:
  *         description: Unauthorized 
+ *       404:
+ *         description: Not found 
  *       500:
  *         description: Some server error
  */
@@ -120,6 +122,7 @@ app.get('/car/:id', (req, res) => {
     console.log("user: " + user + ", json:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
   } else {
+    console.log("user: " + user + ", Not found, car id =  " + req.params['id']);
     res.status(404).send("Not Found"); 
   }
 });
