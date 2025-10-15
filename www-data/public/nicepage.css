@@ -45672,6 +45672,166 @@ a.u-link.u-text-hover-color-var:hover {
         }
 
         
+        
+        .u-custom-color-3,
+        .u-body.u-custom-color-3,
+        section.u-custom-color-3:before,
+        .u-custom-color-3 > .u-audio-main-layout-wrapper:before,
+        .u-custom-color-3 > .u-container-layout:before,
+        .u-custom-color-3 > .u-inner-container-layout:before,
+        .u-custom-color-3.u-sidenav:before,
+        .u-container-layout.u-container-layout.u-custom-color-3:before,
+        .u-table-alt-custom-color-3 tr:nth-child(even)
+        {
+            color: #ffffff;
+            background-color: #9b7ffb;
+
+        }
+
+        .u-input.u-custom-color-3,
+        .u-field-input.u-custom-color-3,
+        .u-button-style.u-custom-color-3,
+        .u-button-style.u-custom-color-3[class*="u-border-"]
+        {
+            color: #ffffff !important;
+            background-color: #9b7ffb !important;
+        }
+
+        .u-button-style.u-custom-color-3:hover,
+        .u-button-style.u-custom-color-3[class*="u-border-"]:hover,
+        .u-button-style.u-custom-color-3:focus,
+        .u-button-style.u-custom-color-3[class*="u-border-"]:focus,
+        .u-button-style.u-button-style.u-custom-color-3:active,
+        .u-button-style.u-button-style.u-custom-color-3[class*="u-border-"]:active,
+        .u-button-style.u-button-style.u-custom-color-3.active,
+        .u-button-style.u-button-style.u-custom-color-3[class*="u-border-"].active,
+        li.active > .u-button-style.u-button-style.u-custom-color-3,
+        li.active > .u-button-style.u-button-style.u-custom-color-3[class*="u-border-"]
+        {
+            color: #ffffff !important;
+            background-color: #7e5afa !important;
+        }
+
+        /* hover */
+        .u-hover-custom-color-3:hover,
+        .u-hover-custom-color-3[class*="u-border-"]:hover,
+        .u-hover-custom-color-3:focus,
+        .u-hover-custom-color-3[class*="u-border-"]:focus,
+        a.u-button-style.u-hover-custom-color-3:hover,
+        a.u-button-style.u-hover-custom-color-3.hover,
+        a.u-button-style.u-hover-custom-color-3[class*="u-border-"]:hover,
+        a.u-button-style.u-hover-custom-color-3[class*="u-border-"].hover,
+        a.u-button-style:hover > .u-hover-custom-color-3,
+        a.u-button-style:hover > .u-hover-custom-color-3[class*="u-border-"],
+        a.u-button-style.u-hover-custom-color-3:focus,
+        a.u-button-style.u-hover-custom-color-3[class*="u-border-"]:focus
+        {
+            color: #ffffff !important;
+            background-color: #9b7ffb !important;
+        }
+
+        /* active */
+        .u-active-custom-color-3.u-active.u-active,
+        .u-active-custom-color-3[class*="u-border-"].u-active.u-active,
+        a.u-button-style.u-button-style.u-active-custom-color-3:active,
+        a.u-button-style.u-button-style.u-active-custom-color-3[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-active-custom-color-3.active,
+        a.u-button-style.u-button-style.u-active-custom-color-3[class*="u-border-"].active,
+        a.u-button-style.u-button-style.active > .u-active-custom-color-3,
+        a.u-button-style.u-button-style.active > .u-active-custom-color-3[class*="u-border-"],
+        li.active > a.u-button-style.u-button-style.u-active-custom-color-3,
+        li.active > a.u-button-style.u-button-style.u-active-custom-color-3[class*="u-border-"],
+        input.u-field-input.u-field-input.u-active-custom-color-3:checked
+        {
+            color: #ffffff !important;
+            background-color: #9b7ffb !important;
+        }
+
+        a.u-link.u-hover-custom-color-3:hover {
+            color: #9b7ffb !important;
+        }
+
+        
+        
+        .u-custom-color-4,
+        .u-body.u-custom-color-4,
+        section.u-custom-color-4:before,
+        .u-custom-color-4 > .u-audio-main-layout-wrapper:before,
+        .u-custom-color-4 > .u-container-layout:before,
+        .u-custom-color-4 > .u-inner-container-layout:before,
+        .u-custom-color-4.u-sidenav:before,
+        .u-container-layout.u-container-layout.u-custom-color-4:before,
+        .u-table-alt-custom-color-4 tr:nth-child(even)
+        {
+            color: #111111;
+            background-color: #b8ea5a;
+
+        }
+
+        .u-input.u-custom-color-4,
+        .u-field-input.u-custom-color-4,
+        .u-button-style.u-custom-color-4,
+        .u-button-style.u-custom-color-4[class*="u-border-"]
+        {
+            color: #111111 !important;
+            background-color: #b8ea5a !important;
+        }
+
+        .u-button-style.u-custom-color-4:hover,
+        .u-button-style.u-custom-color-4[class*="u-border-"]:hover,
+        .u-button-style.u-custom-color-4:focus,
+        .u-button-style.u-custom-color-4[class*="u-border-"]:focus,
+        .u-button-style.u-button-style.u-custom-color-4:active,
+        .u-button-style.u-button-style.u-custom-color-4[class*="u-border-"]:active,
+        .u-button-style.u-button-style.u-custom-color-4.active,
+        .u-button-style.u-button-style.u-custom-color-4[class*="u-border-"].active,
+        li.active > .u-button-style.u-button-style.u-custom-color-4,
+        li.active > .u-button-style.u-button-style.u-custom-color-4[class*="u-border-"]
+        {
+            color: #111111 !important;
+            background-color: #ace63d !important;
+        }
+
+        /* hover */
+        .u-hover-custom-color-4:hover,
+        .u-hover-custom-color-4[class*="u-border-"]:hover,
+        .u-hover-custom-color-4:focus,
+        .u-hover-custom-color-4[class*="u-border-"]:focus,
+        a.u-button-style.u-hover-custom-color-4:hover,
+        a.u-button-style.u-hover-custom-color-4.hover,
+        a.u-button-style.u-hover-custom-color-4[class*="u-border-"]:hover,
+        a.u-button-style.u-hover-custom-color-4[class*="u-border-"].hover,
+        a.u-button-style:hover > .u-hover-custom-color-4,
+        a.u-button-style:hover > .u-hover-custom-color-4[class*="u-border-"],
+        a.u-button-style.u-hover-custom-color-4:focus,
+        a.u-button-style.u-hover-custom-color-4[class*="u-border-"]:focus
+        {
+            color: #111111 !important;
+            background-color: #b8ea5a !important;
+        }
+
+        /* active */
+        .u-active-custom-color-4.u-active.u-active,
+        .u-active-custom-color-4[class*="u-border-"].u-active.u-active,
+        a.u-button-style.u-button-style.u-active-custom-color-4:active,
+        a.u-button-style.u-button-style.u-active-custom-color-4[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-active-custom-color-4.active,
+        a.u-button-style.u-button-style.u-active-custom-color-4[class*="u-border-"].active,
+        a.u-button-style.u-button-style.active > .u-active-custom-color-4,
+        a.u-button-style.u-button-style.active > .u-active-custom-color-4[class*="u-border-"],
+        li.active > a.u-button-style.u-button-style.u-active-custom-color-4,
+        li.active > a.u-button-style.u-button-style.u-active-custom-color-4[class*="u-border-"],
+        input.u-field-input.u-field-input.u-active-custom-color-4:checked
+        {
+            color: #111111 !important;
+            background-color: #b8ea5a !important;
+        }
+
+        a.u-link.u-hover-custom-color-4:hover {
+            color: #b8ea5a !important;
+        }
+
+        
 
         
         .u-border-custom-color-1,
@@ -45785,6 +45945,120 @@ a.u-link.u-text-hover-color-var:hover {
         .u-link.u-border-custom-color-2[class*="u-border-"]:hover
         {
             border-color: #e60000 !important;
+        }
+        
+        
+        .u-border-custom-color-3,
+        .u-border-custom-color-3.u-input,
+        .u-border-custom-color-3.u-field-input.u-field-input,
+        .u-separator-custom-color-3:after
+        {
+            border-color: #9b7ffb;
+            stroke: #9b7ffb;
+        }
+
+        .u-button-style.u-border-custom-color-3
+        {
+            border-color: #9b7ffb !important;
+            color: #9b7ffb !important;
+            background-color: transparent !important;
+        }
+
+        .u-button-style.u-border-custom-color-3:hover,
+        .u-button-style.u-border-custom-color-3:focus
+        {
+            border-color: transparent !important;
+            color: #7e5afa !important;
+            background-color: transparent !important;
+        }
+
+        .u-border-hover-custom-color-3:hover,
+        .u-border-hover-custom-color-3:focus,
+        a.u-button-style.u-border-hover-custom-color-3:hover,
+        a.u-button-style:hover > .u-border-hover-custom-color-3,
+        a.u-button-style.u-border-hover-custom-color-3:focus
+        {
+            color: #9b7ffb !important;
+            border-color: #9b7ffb !important;
+        }
+
+
+        .u-border-active-custom-color-3.u-active.u-active,
+        a.u-button-style.u-button-style.u-border-active-custom-color-3:active,
+        a.u-button-style.u-button-style.u-border-active-custom-color-3.active,
+        a.u-button-style.u-button-style.active > .u-border-active-custom-color-3,
+        li.active > a.u-button-style.u-button-style.u-border-active-custom-color-3,
+        input.u-field-input.u-field-input.u-border-active-custom-color-3:checked
+        {
+            color: #9b7ffb !important;
+            border-color: #9b7ffb !important;
+        }
+
+        .u-link.u-border-custom-color-3[class*="u-border-"]
+        {
+            border-color: #9b7ffb !important;
+        }
+
+        .u-link.u-border-custom-color-3[class*="u-border-"]:hover
+        {
+            border-color: #7e5afa !important;
+        }
+        
+        
+        .u-border-custom-color-4,
+        .u-border-custom-color-4.u-input,
+        .u-border-custom-color-4.u-field-input.u-field-input,
+        .u-separator-custom-color-4:after
+        {
+            border-color: #b8ea5a;
+            stroke: #b8ea5a;
+        }
+
+        .u-button-style.u-border-custom-color-4
+        {
+            border-color: #b8ea5a !important;
+            color: #b8ea5a !important;
+            background-color: transparent !important;
+        }
+
+        .u-button-style.u-border-custom-color-4:hover,
+        .u-button-style.u-border-custom-color-4:focus
+        {
+            border-color: transparent !important;
+            color: #ace63d !important;
+            background-color: transparent !important;
+        }
+
+        .u-border-hover-custom-color-4:hover,
+        .u-border-hover-custom-color-4:focus,
+        a.u-button-style.u-border-hover-custom-color-4:hover,
+        a.u-button-style:hover > .u-border-hover-custom-color-4,
+        a.u-button-style.u-border-hover-custom-color-4:focus
+        {
+            color: #b8ea5a !important;
+            border-color: #b8ea5a !important;
+        }
+
+
+        .u-border-active-custom-color-4.u-active.u-active,
+        a.u-button-style.u-button-style.u-border-active-custom-color-4:active,
+        a.u-button-style.u-button-style.u-border-active-custom-color-4.active,
+        a.u-button-style.u-button-style.active > .u-border-active-custom-color-4,
+        li.active > a.u-button-style.u-button-style.u-border-active-custom-color-4,
+        input.u-field-input.u-field-input.u-border-active-custom-color-4:checked
+        {
+            color: #b8ea5a !important;
+            border-color: #b8ea5a !important;
+        }
+
+        .u-link.u-border-custom-color-4[class*="u-border-"]
+        {
+            border-color: #b8ea5a !important;
+        }
+
+        .u-link.u-border-custom-color-4[class*="u-border-"]:hover
+        {
+            border-color: #ace63d !important;
         }
         
 
@@ -45968,6 +46242,188 @@ a.u-link.u-text-hover-color-var:hover {
         a.u-link.u-text-hover-custom-color-2:hover
         {
             color: #ff0000 !important;
+        }
+        
+        
+        .u-text-custom-color-3,
+        .u-input.u-text-custom-color-3,
+        .u-input.u-text-custom-color-3[class*="u-border-"],
+        li.active > a.u-button-style.u-text-custom-color-3,
+        li.active > a.u-button-style.u-text-custom-color-3[class*="u-border-"],
+        a.u-button-style.u-text-custom-color-3,
+        a.u-button-style.u-text-custom-color-3[class*="u-border-"]
+        {
+            color: #9b7ffb !important;
+            
+            
+            
+        }
+
+        a.u-button-style.u-text-custom-color-3:hover,
+        a.u-button-style.u-text-custom-color-3[class*="u-border-"]:hover,
+        a.u-button-style.u-text-custom-color-3:focus,
+        a.u-button-style.u-text-custom-color-3[class*="u-border-"]:focus,
+        a.u-button-style.u-button-style.u-text-custom-color-3:active,
+        a.u-button-style.u-button-style.u-text-custom-color-3[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-text-custom-color-3.active,
+        a.u-button-style.u-button-style.u-text-custom-color-3[class*="u-border-"].active
+        {
+            color: #7e5afa !important;
+        }
+
+        /* hover */
+        a.u-button-style:hover > .u-text-hover-custom-color-3,
+        a.u-button-style:hover > .u-text-hover-custom-color-3[class*="u-border-"],
+        a.u-button-style.u-button-style.u-text-hover-custom-color-3:hover,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-3[class*="u-border-"]:hover,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-3.active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-3[class*="u-border-"].active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-3:active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-3[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-3:focus,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-3[class*="u-border-"]:focus,
+        :not(.level-2) > .u-nav > .u-nav-item > a.u-nav-link.u-text-hover-custom-color-3:hover,
+        .u-text-hover-custom-color-3.u-language-url:hover,
+        .u-text-hover-custom-color-3 .u-language-url:hover,
+        .u-text-hover-custom-color-3.u-carousel-control:hover,
+        .u-text-hover-custom-color-3.u-gallery-nav:hover,
+        .u-popupmenu-items.u-text-hover-custom-color-3 .u-nav-link:hover,
+        .u-calendar-time-list .u-calendar-time-slot.u-text-hover-custom-color-3:hover
+        {
+            color: #9b7ffb !important;
+        }
+
+        /* active */
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-3:active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-3[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-3.active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-3[class*="u-border-"].active,
+        a.u-button-style.u-button-style.active > .u-text-active-custom-color-3,
+        a.u-button-style.u-button-style.active > .u-text-active-custom-color-3[class*="u-border-"],
+        :not(.level-2) > .u-nav > .u-nav-item > a.u-nav-link.u-nav-link.u-text-active-custom-color-3.active,
+        .u-popupmenu-items.u-popupmenu-items.u-text-active-custom-color-3 .u-nav-link.active,
+        .u-calendar-time-list .u-calendar-time-slot.u-text-active-custom-color-3.u-active
+        {
+            color: #9b7ffb !important;
+        }
+
+        .u-text-custom-color-3 .u-svg-link {
+            fill: #9b7ffb;
+        }
+
+        .u-text-hover-custom-color-3:hover .u-svg-link,
+        .u-text-hover-custom-color-3:focus .u-svg-link,
+        .u-button-style:hover > .u-text-hover-custom-color-3 .u-svg-link
+        {
+            fill: #9b7ffb;
+        }
+
+        .u-text-active-custom-color-3:active .u-svg-link.u-svg-link,
+        .u-button-style.u-button-style:active > .u-text-active-custom-color-3 .u-svg-link,
+        .u-button-style.u-button-style.active > .u-text-active-custom-color-3 .u-svg-link
+        {
+            fill: #9b7ffb;
+        }
+
+        .u-link.u-text-custom-color-3:hover
+        {
+            color: #7e5afa !important;
+        }
+
+        a.u-link.u-text-hover-custom-color-3:hover
+        {
+            color: #9b7ffb !important;
+        }
+        
+        
+        .u-text-custom-color-4,
+        .u-input.u-text-custom-color-4,
+        .u-input.u-text-custom-color-4[class*="u-border-"],
+        li.active > a.u-button-style.u-text-custom-color-4,
+        li.active > a.u-button-style.u-text-custom-color-4[class*="u-border-"],
+        a.u-button-style.u-text-custom-color-4,
+        a.u-button-style.u-text-custom-color-4[class*="u-border-"]
+        {
+            color: #b8ea5a !important;
+            
+            
+            
+        }
+
+        a.u-button-style.u-text-custom-color-4:hover,
+        a.u-button-style.u-text-custom-color-4[class*="u-border-"]:hover,
+        a.u-button-style.u-text-custom-color-4:focus,
+        a.u-button-style.u-text-custom-color-4[class*="u-border-"]:focus,
+        a.u-button-style.u-button-style.u-text-custom-color-4:active,
+        a.u-button-style.u-button-style.u-text-custom-color-4[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-text-custom-color-4.active,
+        a.u-button-style.u-button-style.u-text-custom-color-4[class*="u-border-"].active
+        {
+            color: #ace63d !important;
+        }
+
+        /* hover */
+        a.u-button-style:hover > .u-text-hover-custom-color-4,
+        a.u-button-style:hover > .u-text-hover-custom-color-4[class*="u-border-"],
+        a.u-button-style.u-button-style.u-text-hover-custom-color-4:hover,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-4[class*="u-border-"]:hover,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-4.active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-4[class*="u-border-"].active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-4:active,
+        a.u-button-style.u-button-style.u-button-style.u-text-hover-custom-color-4[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-4:focus,
+        a.u-button-style.u-button-style.u-text-hover-custom-color-4[class*="u-border-"]:focus,
+        :not(.level-2) > .u-nav > .u-nav-item > a.u-nav-link.u-text-hover-custom-color-4:hover,
+        .u-text-hover-custom-color-4.u-language-url:hover,
+        .u-text-hover-custom-color-4 .u-language-url:hover,
+        .u-text-hover-custom-color-4.u-carousel-control:hover,
+        .u-text-hover-custom-color-4.u-gallery-nav:hover,
+        .u-popupmenu-items.u-text-hover-custom-color-4 .u-nav-link:hover,
+        .u-calendar-time-list .u-calendar-time-slot.u-text-hover-custom-color-4:hover
+        {
+            color: #b8ea5a !important;
+        }
+
+        /* active */
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-4:active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-4[class*="u-border-"]:active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-4.active,
+        a.u-button-style.u-button-style.u-button-style.u-button-style.u-text-active-custom-color-4[class*="u-border-"].active,
+        a.u-button-style.u-button-style.active > .u-text-active-custom-color-4,
+        a.u-button-style.u-button-style.active > .u-text-active-custom-color-4[class*="u-border-"],
+        :not(.level-2) > .u-nav > .u-nav-item > a.u-nav-link.u-nav-link.u-text-active-custom-color-4.active,
+        .u-popupmenu-items.u-popupmenu-items.u-text-active-custom-color-4 .u-nav-link.active,
+        .u-calendar-time-list .u-calendar-time-slot.u-text-active-custom-color-4.u-active
+        {
+            color: #b8ea5a !important;
+        }
+
+        .u-text-custom-color-4 .u-svg-link {
+            fill: #b8ea5a;
+        }
+
+        .u-text-hover-custom-color-4:hover .u-svg-link,
+        .u-text-hover-custom-color-4:focus .u-svg-link,
+        .u-button-style:hover > .u-text-hover-custom-color-4 .u-svg-link
+        {
+            fill: #b8ea5a;
+        }
+
+        .u-text-active-custom-color-4:active .u-svg-link.u-svg-link,
+        .u-button-style.u-button-style:active > .u-text-active-custom-color-4 .u-svg-link,
+        .u-button-style.u-button-style.active > .u-text-active-custom-color-4 .u-svg-link
+        {
+            fill: #b8ea5a;
+        }
+
+        .u-link.u-text-custom-color-4:hover
+        {
+            color: #ace63d !important;
+        }
+
+        a.u-link.u-text-hover-custom-color-4:hover
+        {
+            color: #b8ea5a !important;
         }
 
         .u-body
@@ -46538,15 +46994,15 @@ a.u-link.u-text-hover-color-var:hover {
         /** color-rules **/
 
         /** alt-color-rules **/
-        :where(.u-custom-color-1, .u-custom-color-2, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey, .u-shading) a, :where(.u-overlap-contrast .u-header) a:not(.u-nav-link):not(.u-btn)
+        :where(.u-custom-color-1, .u-custom-color-2, .u-custom-color-3, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey, .u-shading) a, :where(.u-overlap-contrast .u-header) a:not(.u-nav-link):not(.u-btn)
         {
         color: #adcce9;
         }
-        :where(.u-custom-color-1, .u-custom-color-2, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey) a:hover
+        :where(.u-custom-color-1, .u-custom-color-2, .u-custom-color-3, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey) a:hover
         {
         color: #a1a1a1;
         }
-        :where(.u-custom-color-1, .u-custom-color-2, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey) a:active
+        :where(.u-custom-color-1, .u-custom-color-2, .u-custom-color-3, .u-body-color, .u-palette-1-base, .u-palette-1-dark-3, .u-palette-1-dark-2, .u-palette-1-dark-1, .u-palette-1, .u-palette-1-light-1, .u-palette-2-base, .u-palette-2-dark-3, .u-palette-2-dark-2, .u-palette-2-dark-1, .u-palette-2, .u-palette-2-light-1, .u-palette-3-dark-3, .u-palette-3-dark-2, .u-palette-3-dark-1, .u-palette-4-base, .u-palette-4-dark-3, .u-palette-4-dark-2, .u-palette-4-dark-1, .u-palette-5-dark-3, .u-palette-5-dark-2, .u-palette-5-dark-1, .u-grey-40, .u-grey-30, .u-grey-90, .u-grey-80, .u-grey-75, .u-black, .u-grey-70, .u-grey-60, .u-grey-50, .u-grey-dark-3, .u-grey-dark-2, .u-grey-dark-1, .u-grey) a:active
         {
         color: #a1a1a1;
         }
