@@ -108,7 +108,7 @@ app.use(
 app.get('/cars', (req, res) => {
   var user = req.headers['username'] == null ? "" : req.headers['username'];
   var json = { "cars": cars };
-  console.log("user: " + user + " json:" + JSON.stringify(json));
+  console.log("user: " + user + ", json:" + JSON.stringify(json));
   res.send(JSON.stringify(json));
 });
 
@@ -117,7 +117,7 @@ app.get('/car/:id', (req, res) => {
   if(car) {
     var user = req.headers['username'] == null ? "" : req.headers['username'];
     var json = { "car": { "name": car.name } };
-    console.log("user: " + user + " json:" + JSON.stringify(json));
+    console.log("user: " + user + ", json:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
   } else {
     res.status(404).send("Not Found"); 
