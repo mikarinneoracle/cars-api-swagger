@@ -106,18 +106,22 @@ app.use(
  */
 
 app.get('/cars', (req, res) => {
+  var user = req.headers['username'] == null ? "" : req.headers['username'];
   var json = { "cars": cars };
-  console.log("json:" + JSON.stringify(json));
+  console.log("user: " + user + " json:" + JSON.stringify(json));
   res.send(JSON.stringify(json));
 });
 
 app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
-  var json ="";
-  if(car)
-    json = { "car": { "name": car.name } };
-  console.log("json:" + JSON.stringify(json));
-  res.send(JSON.stringify(json));
+  if(car) {
+    var user = req.headers['username'] == null ? "" : req.headers['username'];
+    var json = { "car": { "name": car.name } };
+    console.log("user: " + user + " json:" + JSON.stringify(json));
+    res.send(JSON.stringify(json));
+  } else {
+    res.status(404).send("Not Found"); 
+  }
 });
 
 app.listen(3000);
