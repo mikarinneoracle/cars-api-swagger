@@ -21,6 +21,11 @@
   text-align: left;
   font-weight: 700;
   font-size: 3.75rem;
+  --animation-custom_in-translate_x: 0px;
+  --animation-custom_in-translate_y: 0px;
+  --animation-custom_in-opacity: 0;
+  --animation-custom_in-rotate: 0deg;
+  --animation-custom_in-scale: 0.3;
   margin: 0 1px;
 }
 

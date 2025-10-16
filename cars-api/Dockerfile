@@ -1,4 +1,4 @@
- FROM node:22.20-alpine
+FROM node:22.20-alpine
 
 ARG APIGW_PATH
 
