@@ -4,4 +4,4 @@ timestamp=$(date +%s)
 sed "s|{CI_PRIVATE_IP}|$ci_private_ip|g" deployment.json > "deployment_$timestamp.json"
 cat "deployment_$timestamp.json"
 oci api-gateway deployment update --deployment-id $deployment_ocid --specification file://./"deployment_$timestamp.json"
-rm -f cat "deployment_$timestamp.json"
+rm -f "deployment_$timestamp.json"
