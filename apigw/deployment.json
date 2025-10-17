@@ -49,7 +49,20 @@
       "path": "/api-200/{path*}",
       "requestPolicies": {
         "authorization": {
-          "type": "ANONYMOUS"
+          "type": "AUTHENTICATION_ONLY"
+        },
+        "headerTransformations": {
+          "setHeaders": {
+            "items": [
+              {
+                "ifExists": "OVERWRITE",
+                "name": "username",
+                "values": [
+                  "${request.auth[username]}"
+                ]
+              }
+            ]
+          }
         }
       }
     },
