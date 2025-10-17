@@ -5,8 +5,8 @@ const app = express();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-const port = 3000;
-const cars = [{ "id": 1, "name": "Toyota" }, { "id": 2, "name": "BMW" }, { "id": 3, "name": "Volvo" }, { "id": 4, "name": "Tesla" }];
+const port = 3001;
+const cars = [{ "id": 1, "name": "Toyota", "price": 20500 }, { "id": 2, "name": "BMW", "price": 47000 }, { "id": 3, "name": "Volvo", "price": 52100 }, { "id": 4, "name": "Tesla", "price": 63900 }];
 
 const apiServer = process.env.api_server == null ? "http://localhost:" + port : "https://" + process.env.api_server;
 console.log("API SERVER:" + apiServer);
@@ -35,7 +35,7 @@ const options = {
     openapi: "3.0.0",
     info: {
       title: "Cars API",
-      version: "1.0.0-free"
+      version: "2.0.0"
     },
     servers: [
       {
@@ -60,6 +60,8 @@ app.use(
  *   description: Cars API
  * /cars:
  *   get:
+ *     security:
+ *       - basicAuth: []
  *     summary: A list of cars
  *     tags: [cars]
  *     responses:
@@ -69,7 +71,7 @@ app.use(
  *           application/json:
  *             schema:
  *               $ref: '#/'
- *             example: { "cars": [ { "id": 1, "name": "Toyota" }, { "id": 2, "name": "BMW" }, { "id": 3, "name": "Volvo" }, { "id": 4, "name": "Tesla" } ] }
+ *             example: { "cars": [{ "id": 1, "name": "Toyota", "price": 20500 }, { "id": 2, "name": "BMW", "price": 47000 }, { "id": 3, "name": "Volvo", "price": 52100 }, { "id": 4, "name": "Tesla", "price": 63900 }] }
  *       401:
  *         description: Unauthorized
  *       500:
@@ -77,6 +79,8 @@ app.use(
  *
  * /car/{id}:
  *   get:
+ *     security:
+ *       - basicAuth: []
  *     summary: A single car by id
  *     tags: [car]
  *     parameters:
@@ -93,7 +97,34 @@ app.use(
  *           application/json:
  *             schema:
  *               $ref: '#/'
- *             example: { "car": { "name": "Toyota" } }
+ *             example: { "car": { "name": "Toyota", "price": 20500 } }
+ *       401:
+ *         description: Unauthorized 
+ *       404:
+ *         description: Not found 
+ *       500:
+ *         description: Some server error
+ * /price/{name}:
+ *   get:
+ *     security:
+ *       - basicAuth: []
+ *     summary: Car's price by car name
+ *     tags: [car]
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Car name
+ *     responses:
+ *       200:
+ *         description: Car's price by car name
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/'
+ *             example: { "car": { "id": 1, "price": 20500 } }
  *       401:
  *         description: Unauthorized 
  *       404:
@@ -113,14 +144,27 @@ app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
   if(car) {
     var user = req.headers['username'] == null ? "-" : req.headers['username'];
-    var json = { "car": { "name": car.name } };
+    var json = { "car": { "name": car.name, "price": car.price } };
     console.log("user: " + user + ", json:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
   } else {
-    console.log("user: " + user + ", Not found, car id =  " + req.params['id']);
+    console.log("user: " + user + ", Car not found, car id =  " + req.params['id']);
     res.status(404).send("Not Found"); 
   }
 });
 
-app.listen(3000);
-console.log("Listening to port 3000");
+app.get('/price/:name', (req, res) => {
+  var car = cars.find(element => element.name == req.params['name']);
+  if(car) {
+    var user = req.headers['username'] == null ? "-" : req.headers['username'];
+    var json = { "car": { "id": car.id, "price": car.price } };
+    console.log("user: " + user + ", json:" + JSON.stringify(json));
+    res.send(JSON.stringify(json));
+  } else {
+    console.log("user: " + user + ", Price not found, car name =  " + req.params['name']);
+    res.status(404).send("Not Found"); 
+  }
+});
+
+app.listen(port);
+console.log("Listening to port " + port);
