@@ -75,8 +75,8 @@
   font-weight: 600;
   background-image: none;
   border-style: solid;
-  margin: 42px auto 0 50px;
-  padding: 18px 119px 19px 118px;
+  margin: 17px auto 0;
+  padding: 18px 82px 19px;
 }
 
 .u-section-1 .u-image-1 {
@@ -135,10 +135,6 @@
   .u-section-1 .u-text-4 {
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .u-section-1 .u-btn-2 {
-    margin-left: 0;
   }
 
   .u-section-1 .u-image-1 {
