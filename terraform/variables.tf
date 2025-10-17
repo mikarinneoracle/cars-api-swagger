@@ -14,9 +14,17 @@ variable "sidecar_image" {
   type = string
 }
 
-variable "cars_image" {
+#### LIST ALL APP IMAGES HERE ####
+
+variable "app_image_1" {
   type = string
 }
+
+variable "app_image_2" {
+  type = string
+}
+
+##################################
 
 variable "ad_number" {
   type    = number
@@ -44,7 +52,6 @@ variable "log_file" {
 
 variable "log_header" {
   type    = string
-  default = "Cars API 1.0.0"
 }
 
 variable "www_mount_path" {

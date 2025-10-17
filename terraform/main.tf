@@ -19,9 +19,11 @@ resource "oci_container_instances_container_instance" "container_instance" {
 
   }
   
+  #### LIST ALL APP CONTAINERS HERE ####
+  
   containers {
 
-    image_url    = var.cars_image
+    image_url    = var.app_image_1
     display_name = "cars-api"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
@@ -39,6 +41,29 @@ resource "oci_container_instances_container_instance" "container_instance" {
     }
 
   }
+  
+  containers {
+
+    image_url    = var.app_image_2
+    display_name = "cars-api"
+    environment_variables = {
+      "log_file" = "${var.log_mount_path}/${var.log_file}"
+      "api_server" = var.apigw_hostname
+    }
+    
+    is_resource_principal_disabled = "false"
+    resource_config {
+      memory_limit_in_gbs = "1.0"
+      vcpus_limit         = "1.0"
+    }
+    volume_mounts {
+          mount_path  = var.log_mount_path
+          volume_name = var.log_mount_name
+    }
+
+  }
+  
+  #######################################
   
   containers {
     image_url    = var.sidecar_image
