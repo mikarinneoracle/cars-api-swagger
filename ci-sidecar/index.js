@@ -25,8 +25,8 @@ console.log("OS BUCKET RELOAD (ms):" + reloadDelay);
 const logHeader = process.env.log_header;
 console.log("LOG HEADER:" + logHeader);
 
-const provider = new common.ConfigFileAuthenticationDetailsProvider("config");
-//const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
+//const provider = new common.ConfigFileAuthenticationDetailsProvider("config");
+const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
 
 const logClient = new loggingingestion.LoggingClient({ authenticationDetailsProvider: provider });
 
