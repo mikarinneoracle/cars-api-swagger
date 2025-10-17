@@ -47028,6 +47028,7 @@ a.u-link.u-text-hover-color-var:hover {
 /*end-variables sitestylecss*/
  .u-header {
   background-image: none;
+  box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
 }
 
 .u-header .u-sheet-1 {
@@ -47040,10 +47041,19 @@ a.u-link.u-text-hover-color-var:hover {
 
 .u-header .u-nav-1 {
   font-size: 1rem;
+  background-image: none;
+}
+
+.u-header .u-nav-2 {
+  background-image: none;
 }
 
 .u-header .u-nav-3 {
   font-size: 1.25rem;
+}
+
+.u-header .u-nav-4 {
+  background-image: none;
 }
 @media (max-width: 1199px) {
   .u-header .u-menu-1 {
