@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: |
         cd cars-api-100
-        docker build . --build-arg APIGW_PATH=/api -t fra.ocir.io/${TENANCY_NAMESPACE}/cars-api:1.0.0
+        docker build . --build-arg APIGW_PATH=/api -t fra.ocir.io/${{ TENANCY_NAMESPACE }}/cars-api:1.0.0
