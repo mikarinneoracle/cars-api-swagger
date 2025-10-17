@@ -47041,19 +47041,10 @@ a.u-link.u-text-hover-color-var:hover {
 
 .u-header .u-nav-1 {
   font-size: 1rem;
-  background-image: none;
-}
-
-.u-header .u-nav-2 {
-  background-image: none;
-}
-
-.u-header .u-nav-3 {
-  font-size: 1.25rem;
 }
 
 .u-header .u-nav-4 {
-  background-image: none;
+  font-size: 1.25rem;
 }
 @media (max-width: 1199px) {
   .u-header .u-menu-1 {
@@ -47070,26 +47061,10 @@ a.u-link.u-text-hover-color-var:hover {
 .u-footer .u-sheet-1 {
   min-height: 72px;
 }
-@media (max-width: 1199px) {
-  .u-footer .u-sheet-1 {
-    min-height: 99px;
-  }
-}
-@media (max-width: 991px) {
-  .u-footer .u-sheet-1 {
-    min-height: 76px;
-  }
-}
-@media (max-width: 767px) {
-  .u-footer .u-sheet-1 {
-    min-height: 57px;
-  }
-}
-@media (max-width: 575px) {
-  .u-footer .u-sheet-1 {
-    min-height: 36px;
-  }
-}
+
+
+
+
 
  /*begin-variables base-font-size*/ 
  html { font-size: 16px; }

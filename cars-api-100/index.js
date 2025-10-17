@@ -33,10 +33,8 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Cars Express API with Swagger",
-      version: "1.0.0",
-      description:
-        "<a href=\"/\"><font size=+3><input type=\"button\" value=\"Back to Home\"/></font></a>"
+      title: "Cars Express API",
+      version: "1.0.0-free"
     },
     servers: [
       {
@@ -117,7 +115,7 @@ app.get('/cars', (req, res) => {
 app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
   if(car) {
-    var user = req.headers['username'] == null ? "" : req.headers['username'];
+    var user = req.headers['username'] == null ? "-" : req.headers['username'];
     var json = { "car": { "name": car.name } };
     console.log("user: " + user + ", json:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
