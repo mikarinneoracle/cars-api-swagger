@@ -24,7 +24,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   containers {
 
     image_url    = var.app_image_1
-    display_name = "cars-api"
+    display_name = "app-1"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
       "api_server" = var.apigw_hostname
@@ -45,7 +45,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   containers {
 
     image_url    = var.app_image_2
-    display_name = "cars-api"
+    display_name = "app-2"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
       "api_server" = var.apigw_hostname
