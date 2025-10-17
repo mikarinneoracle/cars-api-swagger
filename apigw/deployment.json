@@ -1,7 +1,7 @@
 {
   "requestPolicies": {
     "authentication": {
-      "functionId": "ocid1.fnfunc.oc1.eu-frankfurt-1.aaaaaaaag3hcubu4pb6erk2begnqrmn752nrf5xavowwjbr3hiobmhzgumkq",
+      "functionId": "{AUTH_FUNC_OCID}",
       "isAnonymousAccessAllowed": true,
       "tokenHeader": "Authorization",
       "type": "CUSTOM_AUTHENTICATION"
@@ -16,7 +16,7 @@
       "methods": [
         "ANY"
       ],
-      "path": "/api/{path*}",
+      "path": "/api-100/{path*}",
       "requestPolicies": {
         "authorization": {
           "type": "ANONYMOUS"
@@ -31,7 +31,37 @@
       "methods": [
         "ANY"
       ],
-      "path": "/cars/{path*}",
+      "path": "/cars-100/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:3001/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/api-200/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:3001/docs/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/cars-200/{path*}",
       "requestPolicies": {
         "authorization": {
           "type": "ANONYMOUS"
