@@ -31,6 +31,6 @@ jobs:
         docker build . --build-arg APIGW_PATH=/api -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         cd ..
-        cd sidecar
+        cd ci-sidecar
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
