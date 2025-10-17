@@ -21,7 +21,7 @@ jobs:
           registry: fra.ocir.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.AUTH_TOKEN }}
-    - name: Build and Push the Docker image
+    - name: Build and Push the Docker images to OCIR
       run: |
         cd cars-api-100
         docker build . --build-arg APIGW_PATH=/api -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:1.0.0-free
@@ -30,3 +30,7 @@ jobs:
         cd cars-api-200
         docker build . --build-arg APIGW_PATH=/api -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
+        cd ..
+        cd sidecar
+        docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
+        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
