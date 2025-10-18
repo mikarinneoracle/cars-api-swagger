@@ -28,8 +28,12 @@
 }
 
 .u-section-1 .u-text-2 {
+  margin: 36px 0 0 22px;
+}
+
+.u-section-1 .u-text-3 {
   text-align: left;
-  margin: 100px 0 0 22px;
+  margin: 36px 0 0 22px;
 }
 
 .u-section-1 .u-btn-1 {
@@ -88,6 +92,10 @@
   }
 
   .u-section-1 .u-text-2 {
+    margin-left: 0;
+  }
+
+  .u-section-1 .u-text-3 {
     margin-left: 0;
   }
 
