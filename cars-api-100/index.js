@@ -111,8 +111,8 @@ app.get('/cars', (req, res) => {
 
 app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
+  var user = req.headers['username'] == null ? "-" : req.headers['username'];
   if(car) {
-    var user = req.headers['username'] == null ? "-" : req.headers['username'];
     var json = { "car": { "name": car.name } };
     console.log("user: " + user + ", json:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
