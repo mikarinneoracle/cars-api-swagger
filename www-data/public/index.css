@@ -9,7 +9,7 @@
 }
 
 .u-section-1 .u-layout-cell-1 {
-  min-height: 0;
+  min-height: 582px;
   pointer-events: auto;
 }
 
@@ -71,6 +71,10 @@
 
   .u-section-1 .u-layout-wrap-1 {
     width: calc(((100% - 940px) / 2) + 940px);
+  }
+
+  .u-section-1 .u-layout-cell-1 {
+    min-height: 468px;
   }
 
   .u-section-1 .u-text-1 {
