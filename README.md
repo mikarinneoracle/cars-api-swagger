@@ -7,8 +7,8 @@ Build containers with GitHub Actions <a href=".github/workflows/containers.yml">
     
 This requires three secrets:
 <pre>
-DOCKER_USERNAME
-AUTH_TOKEN
+fra.ocir.io DOCKER_USERNAME
+fra.ocir.io AUTH_TOKEN
 TENANCY_NAMESPACE
 </pre>
 
