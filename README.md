@@ -1,4 +1,4 @@
-# Container Instances Cars API with Swagger, NGINGX and OCI Logging
+# Container Instances Cars API with Swagger, NGINX and OCI Logging
 
 ## Build containers
 
