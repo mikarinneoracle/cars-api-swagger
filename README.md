@@ -1,5 +1,7 @@
 # Container Instances Cars API with Swagger, NGINX and OCI Logging
 
+<img src="./main.png" width="400"/>
+
 ## Build containers
 
 Build containers with GitHub Actions <a href=".github/workflows/containers.yml">pipeline</a>.
