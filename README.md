@@ -7,10 +7,11 @@ Build containers with GitHub Actions <a href=".github/workflows/containers.yml">
     
 This requires three secrets:
 <pre>
-fra.ocir.io DOCKER_USERNAME
-fra.ocir.io AUTH_TOKEN
+DOCKER_USERNAME
+AUTH_TOKEN
 TENANCY_NAMESPACE
 </pre>
+It uses <code>FRA</code> region for OCIR, i.e. Registry is <code>fra.ocir.io</code>
 
 ## Deploy CI stack
 
