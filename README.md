@@ -1,6 +1,6 @@
 # Container Instances Cars API with Swagger, NGINX and OCI Logging
 
-<img src="./main.png" width="400"/>
+<img src="./main.png" width="200"/>
 
 ## Build containers
 
