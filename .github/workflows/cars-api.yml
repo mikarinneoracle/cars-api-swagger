@@ -34,3 +34,7 @@ jobs:
         cd ci-sidecar
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
+        cd ..
+        cd fn-authorizer
+        docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fnbasicauth:1.0.0
+        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-fnbasicauth:1.0.0
