@@ -16,3 +16,4 @@ It uses <code>FRA</code> region for OCIR, i.e. Registry is <code>fra.ocir.io</co
 ## Deploy CI stack
 
 [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/mikarinneoracle/cars-api-swagger/releases/download/latest/ci-stack.zip)
+
