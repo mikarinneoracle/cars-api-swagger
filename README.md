@@ -2,7 +2,7 @@
 
 <img src="./main.png" width="200"/>
 <p>
-<font size="-2">Image by <a href="freepik.com">Freepik</a></font>
+Image by <a href="http://www.freepik.com">Freepik</a>
 
 ## Build containers
 
