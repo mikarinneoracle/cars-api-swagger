@@ -68,7 +68,7 @@ async function mount(osClient, namespace, bucket, www_path, reloadDelay)
     console.log(files[i].name);
     await downloadFile(osClient, namespace, bucket, files[i], www_path);
  }
- if(reloadDelay > 0) {
+ if(parseInt(reloadDelay) > 0) {
   setTimeout(function() {
     mount(osClient, namespace, bucket, www_path, reloadDelay);
   }, parseInt(reloadDelay));   
