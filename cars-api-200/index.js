@@ -148,7 +148,7 @@ app.get('/car/:id', (req, res) => {
     console.log("user: " + user + ", api-200:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
   } else {
-    console.log("user: " + user + ", api-200: Car not found, car id =  " + req.params['id']);
+    console.log("user: " + user + ", api-200:Car not found, car id =  " + req.params['id']);
     res.status(404).send("Not Found"); 
   }
 });
@@ -161,7 +161,7 @@ app.get('/price/:name', (req, res) => {
     console.log("user: " + user + ", api-200:" + JSON.stringify(json));
     res.send(JSON.stringify(json));
   } else {
-    console.log("user: " + user + ", api-200: Price not found, car name =  " + req.params['name']);
+    console.log("user: " + user + ", api-200:Price not found, car name =  " + req.params['name']);
     res.status(404).send("Not Found"); 
   }
 });
