@@ -89,6 +89,12 @@ variable "www_data_bucket" {
   description = "Object Storage bucket name"
 }
 
+variable "create_www_data_bucket" {
+  type    = bool
+  default = false
+  description = "Create www-data bucket with directories"
+}
+
 variable "apigw_hostname" {
   type    = string
   description = "API Gateway hostname for Swagger server urls"

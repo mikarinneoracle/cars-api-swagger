@@ -23,7 +23,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   
   containers {
 
-    image_url    = "var.ocir_region/data.objectstorage_namespace/var.app_image_1"
+    image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.app_image_1}"
     display_name = "app-1"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
@@ -39,12 +39,11 @@ resource "oci_container_instances_container_instance" "container_instance" {
           mount_path  = var.log_mount_path
           volume_name = var.log_mount_name
     }
-
   }
   
   containers {
 
-    image_url    = "var.ocir_region/data.objectstorage_namespace/var.app_image_2"
+    image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.app_image_2}"
     display_name = "app-2"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
@@ -60,13 +59,12 @@ resource "oci_container_instances_container_instance" "container_instance" {
           mount_path  = var.log_mount_path
           volume_name = var.log_mount_name
     }
-
   }
   
   #######################################
   
   containers {
-    image_url    = "var.ocir_region/data.objectstorage_namespace/var.sidecar_image"
+    image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.sidecar_image}"
     display_name = "sidecar"
     environment_variables = {
       "log_ocid" = var.log_ocid
@@ -127,8 +125,4 @@ data "oci_identity_availability_domain" "oci_ad" {
 
   compartment_id = var.tenancy_ocid
   ad_number      = var.ad_number
-}
-
-data "oci_objectstorage_namespace" "objectstorage_namespace" {
-  compartment_id = var.compartment_id
 }
