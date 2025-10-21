@@ -27,7 +27,6 @@ resource "oci_container_instances_container_instance" "container_instance" {
     display_name = "app-1"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
-      "api_server" = var.apigw_hostname
     }
     
     is_resource_principal_disabled = "false"
@@ -47,7 +46,6 @@ resource "oci_container_instances_container_instance" "container_instance" {
     display_name = "app-2"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
-      "api_server" = var.apigw_hostname
     }
     
     is_resource_principal_disabled = "false"

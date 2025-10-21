@@ -8,9 +8,6 @@ const swaggerUi = require("swagger-ui-express");
 const port = 3001;
 const cars = [{ "id": 1, "name": "Toyota", "price": 20500 }, { "id": 2, "name": "BMW", "price": 47000 }, { "id": 3, "name": "Volvo", "price": 52100 }, { "id": 4, "name": "Tesla", "price": 63900 }];
 
-const apiServer = process.env.api_server == null ? "http://localhost:" + port : "https://" + process.env.api_server;
-console.log("API SERVER:" + apiServer);
-
 const logFile = process.env.log_file == null ? "./app.log" : process.env.log_file;
 console.log("APP LOG: " + logFile);
 
@@ -36,12 +33,7 @@ const options = {
     info: {
       title: "Cars API",
       version: "2.0.0"
-    },
-    servers: [
-      {
-        url: apiServer 
-      },
-    ],
+    }
   },
   apis: ["./index.js"],
 };

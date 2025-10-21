@@ -95,11 +95,6 @@ variable "create_www_data_bucket" {
   description = "Create www-data bucket with directories"
 }
 
-variable "apigw_hostname" {
-  type    = string
-  description = "API Gateway hostname for Swagger server urls"
-}
-
 variable "www_reload_delay" {
   type    = number
   default = 30000
