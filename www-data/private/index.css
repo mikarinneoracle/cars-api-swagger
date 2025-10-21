@@ -85,10 +85,10 @@
 }
 
 .u-section-1 .u-image-2 {
-  width: 580px;
-  height: 285px;
+  height: 240px;
   filter: none;
   box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  width: 589px;
   margin: 43px auto 0;
 }
 
@@ -132,8 +132,8 @@
   }
 
   .u-section-1 .u-image-2 {
+    height: 183px;
     width: 448px;
-    height: 220px;
   }
 }
 
@@ -169,8 +169,8 @@
   }
 
   .u-section-1 .u-image-2 {
+    height: 141px;
     width: 346px;
-    height: 170px;
   }
 }
 
@@ -252,8 +252,8 @@
   }
 
   .u-section-1 .u-image-2 {
+    height: 130px;
     width: 320px;
-    height: 157px;
   }
 }.u-section-2 .u-sheet-1 {
   min-height: 853px;
