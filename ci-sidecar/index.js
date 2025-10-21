@@ -68,9 +68,13 @@ async function mount(osClient, namespace, bucket, www_path, reloadDelay)
     console.log(files[i].name);
     await downloadFile(osClient, namespace, bucket, files[i], www_path);
  }
- setTimeout(function() {
+ if(reloadDelay > 0) {
+  setTimeout(function() {
     mount(osClient, namespace, bucket, www_path, reloadDelay);
-  }, parseInt(reloadDelay));
+  }, parseInt(reloadDelay));   
+ } else {
+    console.log("No reloading of bucket " + bucket + " since reload delay was " + reloadDelay);
+ }
 }
 
 async function downloadFile(osClient, namespace, bucket, file, path)
