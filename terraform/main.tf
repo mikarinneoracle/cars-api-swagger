@@ -91,7 +91,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   
   shape = "CI.Standard.E4.Flex"
   shape_config {
-    memory_in_gbs = "2"
+    memory_in_gbs = "16"
     ocpus         = "1"
   }
   
