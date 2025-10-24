@@ -16,14 +16,19 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
+import redis.clients.jedis.UnifiedJedis;
 
 public class HelloFunction {
 
     String authConfig = "";
+    UnifiedJedis jedis = null;
 
     @FnConfiguration
     public void setUp(RuntimeContext ctx) throws Exception {
         authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
+
+        String redis = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("redis", "localhost:6379"));
+        jedis = new UnifiedJedis("redis://" + redis);
     }
 
     public String handleRequest(final HTTPGatewayContext hctx, final InputEvent input) {
@@ -51,16 +56,16 @@ public class HelloFunction {
             for (String configToken : tokenizedConfig) {
                 for (String token : tokenizedBody) {
                     if (token.indexOf("Basic ") > -1 && configToken.length() > 0) {
-                        String auth_token = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
-                        if (auth_token.equals(configToken)) {
-                            System.out.println("AUTH SUCCESS " + auth_token + " == " + configToken);
-                            byte[] decodedBytes = Base64.getDecoder().decode(auth_token);
+                        String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                        if (authToken.equals(configToken)) {
+                            System.out.println("AUTH SUCCESS " + authToken + " == " + configToken);
+                            byte[] decodedBytes = Base64.getDecoder().decode(authToken);
                             String decodedString = new String(decodedBytes);
                             String[] decodedTokens = decodedString.split(":");
                             username = decodedTokens[0];
                             IS_FOUND = true;
                         } else {
-                            System.out.println("AUTH NO MATCH " + auth_token + " <> " + configToken);
+                            System.out.println("AUTH NO MATCH " + authToken + " <> " + configToken);
                         }
                     }
                 }
