@@ -33,10 +33,13 @@ public class HelloFunction {
     @FnConfiguration
     public void setUp(RuntimeContext ctx) throws Exception {
         authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
-
         String redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
-        jedis = new Jedis(redisConfig, 6379, true);
-        System.out.println("Redis config: " + redisConfig);
+        try {
+            System.out.println("Redis config: " + redisConfig);
+            jedis = new Jedis(redisConfig, 6379, true);
+        } catch (Exception e) {
+           System.out.println("Redis error:" + e.getMessage());
+        }
     }
 
     // Added main to do testing with local Redis
