@@ -39,6 +39,6 @@ jobs:
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         cd ..
         cd fn-authorizer
-        cp src/main/java/com/example/fn/HelloFunction_101.java src/main/java/com/example/fn/HelloFunction.java
+        cp src/main/java/com/example/fn/HelloFunction_101._java src/main/java/com/example/fn/HelloFunction.java
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.1
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.1
