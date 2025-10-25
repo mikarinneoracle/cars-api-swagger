@@ -36,6 +36,7 @@ public class HelloFunction {
 
         String redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
         jedis = new UnifiedJedis("redis://" + redisConfig);
+        System.out.println("Redis config: " + redisConfig);
     }
 
     // Added main to do testing with local Redis
