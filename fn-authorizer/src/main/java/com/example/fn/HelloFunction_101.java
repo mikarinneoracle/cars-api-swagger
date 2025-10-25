@@ -1,0 +1,147 @@
+package com.example.fn;
+
+import com.fnproject.fn.api.FnConfiguration;
+import com.fnproject.fn.api.Headers;
+import com.fnproject.fn.api.InputEvent;
+
+import com.fnproject.fn.api.RuntimeContext;
+import com.fnproject.fn.api.httpgateway.HTTPGatewayContext;
+
+import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.UnifiedJedis;
+
+public class HelloFunction {
+
+    static String authConfig = "";
+    static UnifiedJedis jedis = null;
+
+    @FnConfiguration
+    public void setUp(RuntimeContext ctx) throws Exception {
+        authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
+
+        String redis = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("redis", "localhost:6379"));
+        jedis = new UnifiedJedis("redis://" + redis);
+    }
+
+    // Added main to do testing with local Redis
+    public static void main( String[] args ) throws IOException, InterruptedException
+    {
+        jedis = new UnifiedJedis("redis://localhost:6379");
+        String authToken = "Zm9vOmJhcg==";
+        byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+        String decodedString = new String(decodedBytes);
+        String[] decodedTokens = decodedString.split(":");
+        String decodedUsername = decodedTokens[0];
+        String decodedPassword = decodedTokens[1];
+        String password = jedis.get(decodedUsername);
+        if (decodedPassword.equals(password)) {
+            System.out.println("AUTH SUCCESS " + decodedUsername);
+        } else {
+            System.out.println("AUTH NO MATCH " + decodedUsername);
+        }
+    }
+
+    public String handleRequest(final HTTPGatewayContext hctx, final InputEvent input) {
+
+        boolean IS_FOUND = false;
+        String ret = "";
+        String username = "";
+
+        String body = input.consumeBody((InputStream is) -> {
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
+                return reader.lines().collect(Collectors.joining());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        System.out.println("Body: " + body);
+
+        String[] configTokens = authConfig.split(",");
+        List<String> tokenizedConfig = Arrays.stream(configTokens).map(String::trim).collect(Collectors.toList());
+
+        if(body.length() > 0) {
+            String[] bodyTokens = body.split(",");
+            List<String> tokenizedBody = Arrays.stream(bodyTokens).map(String::trim).collect(Collectors.toList());
+
+            // Search from Redis - if not found fallback to function config
+            for (String token : tokenizedBody) {
+                if (token.indexOf("Basic ") > -1) {
+                    String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                    byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+                    String decodedString = new String(decodedBytes);
+                    String[] decodedTokens = decodedString.split(":");
+                    String decodedUsername = decodedTokens[0];
+                    String decodedPassword = decodedTokens[1];
+                    try {
+                        String password = jedis.get(decodedUsername);
+                        if (decodedPassword.equals(password)) {
+                            System.out.println("AUTH SUCCESS " + decodedUsername);
+                            IS_FOUND = true;
+                        } else {
+                            System.out.println("AUTH NO MATCH " + decodedUsername);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Redis error:" + e.getMessage());
+                    }
+                }
+            }
+
+            if(!IS_FOUND) {
+                for (String configToken : tokenizedConfig) {
+                    for (String token : tokenizedBody) {
+                        if (token.indexOf("Basic ") > -1 && configToken.length() > 0) {
+                            String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                            if (authToken.equals(configToken)) {
+                                System.out.println("AUTH SUCCESS " + authToken + " == " + configToken);
+                                byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+                                String decodedString = new String(decodedBytes);
+                                String[] decodedTokens = decodedString.split(":");
+                                username = decodedTokens[0];
+                                IS_FOUND = true;
+                            } else {
+                                System.out.println("AUTH NO MATCH " + authToken + " <> " + configToken);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Use header transformation in APIGW Route to get username in headers from this response
+        // in the target function:
+        // Overwrite	username     ${request.auth[username]}
+        if(IS_FOUND) {
+            LocalDateTime dateTime = LocalDateTime.now().plusDays(1);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'+00:00'");
+            String expiryDate = dateTime.format(formatter);
+            ret = "{ " +
+                    "\"active\": true," +
+                    "\"principal\": \"myprincipal\"," +
+                    "\"scope\": [\"fnbasicauthtest\"]," +
+                    "\"expiresAt\": \"" + expiryDate + "\"," +
+                    "\"context\": { \"username\": \"" + username + "\" }" +
+                    " }";
+        } else {
+            ret = "{ " +
+                    "\"active\": false," +
+                    "\"wwwAuthenticate\": \"Basic realm=\\\"somesite.io\\\"\"" +
+                    " }";
+        }
+        System.out.println(ret);
+        return ret;
+    }
+}
