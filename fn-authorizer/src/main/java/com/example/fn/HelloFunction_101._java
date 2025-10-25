@@ -22,38 +22,42 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.UnifiedJedis;
+import redis.clients.jedis.Jedis;
 
 public class HelloFunction {
 
     static String authConfig = "";
     static String redisConfig = "";
-    static UnifiedJedis jedis = null;
+    static Jedis jedis = null;
 
     @FnConfiguration
     public void setUp(RuntimeContext ctx) throws Exception {
         authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
 
         String redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
-        jedis = new UnifiedJedis("redis://" + redisConfig);
+        jedis = new Jedis(redisConfig, 6379, true);
         System.out.println("Redis config: " + redisConfig);
     }
 
     // Added main to do testing with local Redis
     public static void main( String[] args ) throws IOException, InterruptedException
     {
-        jedis = new UnifiedJedis("redis://localhost:6379");
-        String authToken = "Zm9vOmJhcg==";
-        byte[] decodedBytes = Base64.getDecoder().decode(authToken);
-        String decodedString = new String(decodedBytes);
-        String[] decodedTokens = decodedString.split(":");
-        String decodedUsername = decodedTokens[0];
-        String decodedPassword = decodedTokens[1];
-        String password = jedis.get(decodedUsername);
-        if (decodedPassword.equals(password)) {
-            System.out.println("AUTH SUCCESS " + decodedUsername);
+        if(args.length > 1) {
+            jedis = new Jedis(args[0], 6379, Boolean.parseBoolean(args[1]));
+            String authToken = "Zm9vOmJhcg==";
+            byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+            String decodedString = new String(decodedBytes);
+            String[] decodedTokens = decodedString.split(":");
+            String decodedUsername = decodedTokens[0];
+            String decodedPassword = decodedTokens[1];
+            String password = jedis.get(decodedUsername);
+            if (decodedPassword.equals(password)) {
+                System.out.println("AUTH SUCCESS " + decodedUsername);
+            } else {
+                System.out.println("AUTH NO MATCH " + decodedUsername);
+            }
         } else {
-            System.out.println("AUTH NO MATCH " + decodedUsername);
+            System.out.println("Give redis address ssl (true/false) as parameters.");
         }
     }
 
