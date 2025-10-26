@@ -115,6 +115,7 @@ public class HelloFunction {
                 }
             }
 
+            /*
             if(!IS_FOUND) {
                 System.out.println("Fallback - Auth with config");
                 for (String configToken : tokenizedConfig) {
@@ -135,6 +136,7 @@ public class HelloFunction {
                     }
                 }
             }
+            */
         }
 
         // Use header transformation in APIGW Route to get username in headers from this response
