@@ -26,14 +26,14 @@ import redis.clients.jedis.Jedis;
 
 public class HelloFunction {
 
-    static String authConfig = "";
-    static String redisConfig = "";
-    static Jedis jedis = null;
+    String authConfig = "";
+    String redisConfig = "";
+    Jedis jedis = null;
 
     @FnConfiguration
     public void setUp(RuntimeContext ctx) throws Exception {
         authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
-        String redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
+        redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
         try {
             System.out.println("Redis config: " + redisConfig);
             jedis = new Jedis(redisConfig, 6379, true);
@@ -46,7 +46,7 @@ public class HelloFunction {
     public static void main( String[] args ) throws IOException, InterruptedException
     {
         if(args.length > 1) {
-            jedis = new Jedis(args[0], 6379, Boolean.parseBoolean(args[1]));
+            Jedis jedis = new Jedis(args[0], 6379, Boolean.parseBoolean(args[1]));
             String authToken = "Zm9vOmJhcg==";
             byte[] decodedBytes = Base64.getDecoder().decode(authToken);
             String decodedString = new String(decodedBytes);

@@ -1,5 +1,5 @@
 schema_version: 20180708
-name: basicauthorizerfnjava
+name: fn-basicauth
 version: 0.0.1
 runtime: java
 build_image: fnproject/fn-java-fdk-build:jdk17-1.0.207
