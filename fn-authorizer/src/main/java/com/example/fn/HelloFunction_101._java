@@ -93,6 +93,7 @@ public class HelloFunction {
                 for (String token : tokenizedBody) {
                     if (token.indexOf("Basic ") > -1) {
                         String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                        System.out.println("TOKEN " + authToken);
                         byte[] decodedBytes = Base64.getDecoder().decode(authToken);
                         String decodedString = new String(decodedBytes);
                         String[] decodedTokens = decodedString.split(":");
