@@ -91,6 +91,7 @@ public class HelloFunction {
             {
                 System.out.println("Auth with Redis");
                 for (String token : tokenizedBody) {
+                    System.out.println("TOKEN " + token);
                     if (token.indexOf("Basic ") > -1) {
                         String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
                         System.out.println("TOKEN " + authToken);
