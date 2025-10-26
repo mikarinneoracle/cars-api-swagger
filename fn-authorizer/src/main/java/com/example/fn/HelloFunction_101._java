@@ -103,10 +103,10 @@ public class HelloFunction {
                         try {
                             String password = jedis.get(decodedUsername);
                             if (decodedPassword.equals(password)) {
-                                System.out.println("REDIS AUTH SUCCESS " + decodedUsername);
+                                System.out.println("REDIS AUTH SUCCESS " + decodedUsername + "/" + decodedPassword);
                                 IS_FOUND = true;
                             } else {
-                                System.out.println("REDIS AUTH NO MATCH " + decodedUsername);
+                                System.out.println("REDIS AUTH NO MATCH! " + decodedUsername + "/" + decodedPassword);
                             }
                         } catch (Exception e) {
                             System.out.println("Redis error:" + e.getMessage());
