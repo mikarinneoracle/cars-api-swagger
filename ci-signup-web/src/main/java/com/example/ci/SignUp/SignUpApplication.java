@@ -3,11 +3,13 @@ package com.example.ci.SignUp;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Template;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +63,7 @@ public class SignUpApplication {
 	public class SignUpWebController {
 
 		@PostMapping("/signup/start")
-		public String signup(HttpServletRequest request, @ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
+		public String signup(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
@@ -75,13 +77,8 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
 				attributes.addFlashAttribute("continue_url", "/signup/start");
 			}
-			Enumeration<String> headerNames = request.getHeaderNames();
-			StringBuilder headers = new StringBuilder();
-			while (headerNames.hasMoreElements()) {
-				String headerName = headerNames.nextElement();
-				headers.append(headerName).append(": ").append(request.getHeader(headerName)).append("\n");
-			}
-			System.out.println(headers.toString());
+			String authHeader = "Basic " + Base64.getEncoder().encodeToString((signUpRequest.getUsername() + ":" + signUpRequest.getPassword()).getBytes());
+			response.setHeader("Authorization", authHeader);
 			String origin = request.getHeader("origin") != null ? request.getHeader("origin") : "";
 			return "redirect:" + origin + "/signup/result";
 		}
