@@ -25,10 +25,14 @@ public class SignUpApplication {
 
 	public static void main(String[] args) {
 		String redisHost = System.getenv("REDIS_HOST");
-		String redisSsl = System.getenv("REDIS_SLL");
+		String redisSsl = System.getenv("REDIS_SSL");
 		// Connect to REDIS
-		jedis = new Jedis(redisHost, 6379, Boolean.parseBoolean(redisSsl));
-		System.out.println("Redis connection created to " + redisHost + ", SSL is " + redisSsl);
+		try {
+			jedis = new Jedis(redisHost, 6379, Boolean.parseBoolean(redisSsl));
+			System.out.println("Redis connection created to " + redisHost + ", SSL is " + redisSsl);
+		} catch (Exception e){
+			System.out.println("Redis connection error to " + redisHost + ", SSL " + redisSsl + " is :" + e.getMessage());
+		}
 		SpringApplication.run(SignUpApplication.class, args);
 	}
 
