@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Jedis;
 
 public class HelloFunction {
 
