@@ -68,7 +68,7 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
 				attributes.addFlashAttribute("continue_url", "/signup");
 			}
-			return "redirect:/signupresult";
+			return "redirect:/signup/result";
 		}
 
 		@GetMapping("/signup")
@@ -80,7 +80,7 @@ public class SignUpApplication {
 			return "signup"; // returns the name of the FreeMarker template
 		}
 
-		@GetMapping("/signupresult")
+		@GetMapping("/signup/result")
 		public String signupresult(@ModelAttribute("result") String result, @ModelAttribute("continue_url") String continue_url, Model model) {
 			model.addAttribute("title", "Sign Up");
 			model.addAttribute("result", result);
