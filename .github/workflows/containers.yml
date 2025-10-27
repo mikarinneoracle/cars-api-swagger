@@ -28,20 +28,20 @@ jobs:
       run: |
         cd cars-api-100
         docker build . --build-arg APIGW_PATH=/api-100 -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:1.0.0-free
-        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:1.0.0-free
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:1.0.0-free
         cd ..
         cd cars-api-200
         docker build . --build-arg APIGW_PATH=/api-200 -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
-        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         cd ..
         cd ci-sidecar
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
-        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         cd ..
         cd fn-authorizer
         cp src/main/java/com/example/fn/HelloFunction_101._java src/main/java/com/example/fn/HelloFunction.java
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.6
-        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.6
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.6
     -
           name: Set up JDK 21
           uses: actions/setup-java@v4
@@ -54,4 +54,4 @@ jobs:
         cd ci-signup-web
         mvn clean package
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-signup-web:1.0.0
-        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-signup-web:1.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-signup-web:1.0.0
