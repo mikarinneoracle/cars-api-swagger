@@ -107,7 +107,7 @@ variable "www_reload_delay" {
 }
 
 variable "redis_host" {
-  type    = number
+  type    = string
   default = ""
   description = "OCI Cache OCID when using Redis for logins"
 }
