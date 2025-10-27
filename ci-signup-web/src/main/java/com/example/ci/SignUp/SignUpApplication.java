@@ -69,13 +69,16 @@ public class SignUpApplication {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
 					attributes.addFlashAttribute("result", "Many thanks " + signUpRequest.getUsername() + ", your Sign up was successful.");
 					attributes.addFlashAttribute("continue_url", continueUrl);
+					attributes.addFlashAttribute("continue_target", "_top"); // Replace from iframe to top level browser
 				} catch (Exception e) {
 					attributes.addFlashAttribute("result", e.getMessage());
 					attributes.addFlashAttribute("continue_url", "/signup/start");
+					attributes.addFlashAttribute("continue_target", "");
 				}
 			} else {
 				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
 				attributes.addFlashAttribute("continue_url", "/signup/start");
+				attributes.addFlashAttribute("continue_target", "");
 			}
 			String authHeader = "Basic " + Base64.getEncoder().encodeToString((signUpRequest.getUsername() + ":" + signUpRequest.getPassword()).getBytes());
 			response.setHeader("Authorization", authHeader);
@@ -93,11 +96,15 @@ public class SignUpApplication {
 		}
 
 		@GetMapping("/signup/result")
-		public String signupresult(@ModelAttribute("result") String result, @ModelAttribute("continue_url") String continue_url, Model model) {
+		public String signupresult(@ModelAttribute("result") String result,
+								   @ModelAttribute("continue_url") String continue_url,
+								   @ModelAttribute("continue_target") String continue_target,
+								   Model model) {
 			model.addAttribute("title", "Sign Up");
 			model.addAttribute("result", result);
 			model.addAttribute("continue_hdr", "Continue");
 			model.addAttribute("continue_url", continue_url);
+			model.addAttribute("continue_target", continue_target);
 			return "signupresult"; // returns the name of the FreeMarker template
 		}
 	}
