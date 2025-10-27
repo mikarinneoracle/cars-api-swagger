@@ -80,8 +80,12 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("continue_url", "/signup/start");
 				attributes.addFlashAttribute("continue_target", "");
 			}
-			String authHeader = "Basic " + Base64.getEncoder().encodeToString((signUpRequest.getUsername() + ":" + signUpRequest.getPassword()).getBytes());
-			response.setHeader("Authorization", authHeader);
+			/*
+			Cookie cookie = new Cookie("auth", signUpRequest.getUsername() + ":" + signUpRequest.getPassword());
+			cookie.setHttpOnly(true);
+			cookie.setSecure(true);
+			response.addCookie(cookie);
+			*/
 			String origin = request.getHeader("origin") != null ? request.getHeader("origin") : "";
 			return "redirect:" + origin + "/signup/result";
 		}
