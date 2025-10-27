@@ -42,3 +42,6 @@ jobs:
         cp src/main/java/com/example/fn/HelloFunction_101._java src/main/java/com/example/fn/HelloFunction.java
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.6
         docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.0.6
+        cd ci-signup-web
+        docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-signup-web:1.0.0
+        docker push fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-signup-web:1.0.0

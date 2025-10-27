@@ -1,11 +1,21 @@
 package com.example.ci.SignUp;
 
+import freemarker.cache.FileTemplateLoader;
+import freemarker.template.Template;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import redis.clients.jedis.Jedis;
 
+import java.io.File;
 import java.util.Base64;
 
 @SpringBootApplication
@@ -14,26 +24,53 @@ public class SignUpApplication {
 	private static Jedis jedis;
 
 	public static void main(String[] args) {
-		if(args.length > 1) {
-			jedis = new Jedis(args[0], 6379, Boolean.parseBoolean(args[1]));
-			System.out.println("Redis connection created to " + args[0] + ":" + args[1]);
-		}
+		String redisHost = System.getenv("REDIS_HOST");
+		String redisSsl = System.getenv("REDIS_SLL");
+		// Connect to REDIS
+		jedis = new Jedis(redisHost, 6379, Boolean.parseBoolean(redisSsl));
+		System.out.println("Redis connection created to " + redisHost + ", SSL is " + redisSsl);
 		SpringApplication.run(SignUpApplication.class, args);
 	}
 
-	@RestController
-	@RequestMapping("/api")
-	public class SignUpController {
+	@Configuration
+
+	@Controller
+	public class SignUpWebController {
 
 		@PostMapping("/signup")
-		public String signup(@ModelAttribute SignUpRequest signUpRequest) {
-			try {
-				jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
-				return "Signup successful " + signUpRequest.getUsername();
-			} catch (Exception e)
-			{
-				return e.getMessage();
+		public String signup(@ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
+			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
+				try {
+					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
+					attributes.addFlashAttribute("result", "Many thanks " + signUpRequest.getUsername() + ", your Sign up was successful.");
+					attributes.addFlashAttribute("continue_url", System.getenv("CONTINUE_URL"));
+				} catch (Exception e) {
+					attributes.addFlashAttribute("result", e.getMessage());
+					attributes.addFlashAttribute("continue_url", "/signup");
+				}
+			} else {
+				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
+				attributes.addFlashAttribute("continue_url", "/signup");
 			}
+			return "redirect:/signupresult";
+		}
+
+		@GetMapping("/signup")
+		public String signup(Model model) {
+			model.addAttribute("title", "Sign Up");
+			model.addAttribute("hdr_username", "Username");
+			model.addAttribute("hdr_password", "Password");
+			model.addAttribute("hdr_create_btn", "Sign Up");
+			return "signup"; // returns the name of the FreeMarker template
+		}
+
+		@GetMapping("/signupresult")
+		public String signupresult(@ModelAttribute("result") String result, @ModelAttribute("continue_url") String continue_url, Model model) {
+			model.addAttribute("title", "Sign Up");
+			model.addAttribute("result", result);
+			model.addAttribute("continue_hdr", "Continue");
+			model.addAttribute("continue_url", continue_url);
+			return "signupresult"; // returns the name of the FreeMarker template
 		}
 	}
 
