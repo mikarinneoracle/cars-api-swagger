@@ -3,6 +3,7 @@ package com.example.ci.SignUp;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Template;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Base64;
+import java.util.Enumeration;
 
 @SpringBootApplication
 public class SignUpApplication {
@@ -59,7 +61,7 @@ public class SignUpApplication {
 	public class SignUpWebController {
 
 		@PostMapping("/signup/start")
-		public String signup(@ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
+		public String signup(HttpServletRequest request, @ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
