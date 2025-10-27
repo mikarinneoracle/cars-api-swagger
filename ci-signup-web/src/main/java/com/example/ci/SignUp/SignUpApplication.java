@@ -16,22 +16,34 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import redis.clients.jedis.Jedis;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Base64;
 
 @SpringBootApplication
 public class SignUpApplication {
 
 	private static Jedis jedis;
+	private static String continueUrl = "";
 
 	public static void main(String[] args) {
 		String redisHost = System.getenv("REDIS_HOST");
 		String redisSsl = System.getenv("REDIS_SSL");
+		String logPath = System.getenv("LOG_FILE");
+		continueUrl = System.getenv("CONTINUE_URL");
+
 		// Connect to REDIS
 		try {
 			jedis = new Jedis(redisHost, 6379, Boolean.parseBoolean(redisSsl));
 			System.out.println("Redis connection created to " + redisHost + ", SSL is " + redisSsl);
 		} catch (Exception e){
 			System.out.println("Redis connection error to " + redisHost + ", SSL " + redisSsl + " is :" + e.getMessage());
+		}
+		try {
+			System.setOut(new PrintStream(new FileOutputStream(logPath, true)));
+			System.out.println("Sending STDOUT logs to " + logPath);
+		} catch (Exception e){
+			System.out.println("Logs output file error to " + logPath + " is :" + e.getMessage());
 		}
 		SpringApplication.run(SignUpApplication.class, args);
 	}
@@ -47,7 +59,7 @@ public class SignUpApplication {
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
 					attributes.addFlashAttribute("result", "Many thanks " + signUpRequest.getUsername() + ", your Sign up was successful.");
-					attributes.addFlashAttribute("continue_url", System.getenv("CONTINUE_URL"));
+					attributes.addFlashAttribute("continue_url", continueUrl);
 				} catch (Exception e) {
 					attributes.addFlashAttribute("result", e.getMessage());
 					attributes.addFlashAttribute("continue_url", "/signup");

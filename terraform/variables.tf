@@ -36,6 +36,11 @@ variable "app_image_2" {
   description = "App 2 image e.g. car-api:2.0.0"
 }
 
+variable "app_image_3" {
+  type = string
+  description = "App 3 image e.g. ci-signup-web"
+}
+
 ##################################
 
 variable "ad_number" {
@@ -101,3 +106,8 @@ variable "www_reload_delay" {
   description = "Object Storage data reload interval in ms, use zero for never"
 }
 
+variable "redis_host" {
+  type    = number
+  default = ""
+  description = "OCI Cache OCID when using Redis for logins"
+}

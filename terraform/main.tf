@@ -59,6 +59,28 @@ resource "oci_container_instances_container_instance" "container_instance" {
     }
   }
   
+  containers {
+
+    image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.app_image_3}"
+    display_name = "app-3"
+    environment_variables = {
+      "REDIS_HOST" = var.redis_host
+      "REDIS_SSL" = "true"
+      "CONTINUE_URL" = "/private/index.html"
+      "LOG_FILE" = "${var.log_mount_path}/${var.log_file}"
+    }
+    
+    is_resource_principal_disabled = "false"
+    resource_config {
+      memory_limit_in_gbs = "1.0"
+      vcpus_limit         = "1.0"
+    }
+    volume_mounts {
+          mount_path  = var.log_mount_path
+          volume_name = var.log_mount_name
+    }
+  }
+  
   #######################################
   
   containers {
