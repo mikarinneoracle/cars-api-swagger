@@ -88,7 +88,6 @@ public class SignUpApplication {
 
 		@GetMapping("/signup/start")
 		public String signup(Model model) {
-			model.addAttribute("title", "Sign Up");
 			model.addAttribute("hdr_username", "Username");
 			model.addAttribute("hdr_password", "Password");
 			model.addAttribute("hdr_create_btn", "Sign Up");
@@ -100,7 +99,6 @@ public class SignUpApplication {
 								   @ModelAttribute("continue_url") String continue_url,
 								   @ModelAttribute("continue_target") String continue_target,
 								   Model model) {
-			model.addAttribute("title", "Sign Up");
 			model.addAttribute("result", result);
 			model.addAttribute("continue_hdr", "Continue");
 			model.addAttribute("continue_url", continue_url);
