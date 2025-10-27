@@ -73,6 +73,13 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
 				attributes.addFlashAttribute("continue_url", "/signup/start");
 			}
+			Enumeration<String> headerNames = request.getHeaderNames();
+			StringBuilder headers = new StringBuilder();
+			while (headerNames.hasMoreElements()) {
+				String headerName = headerNames.nextElement();
+				headers.append(headerName).append(": ").append(request.getHeader(headerName)).append("\n");
+			}
+			System.out.println(headers.toString());
 			return "redirect:/signup/result";
 		}
 
