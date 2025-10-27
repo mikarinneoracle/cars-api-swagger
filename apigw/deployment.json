@@ -11,6 +11,21 @@
     {
       "backend": {
         "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:8080/signup/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/signup/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
         "url": "http://{CI_PRIVATE_IP}:3000/${request.path[path]}"
       },
       "methods": [

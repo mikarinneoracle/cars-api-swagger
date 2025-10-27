@@ -48,7 +48,7 @@ public class SignUpApplication {
 		try {
 			System.setOut(new PrintStream(new FileOutputStream(logFile, true)));
 		} catch (Exception e){
-			System.out.println("Logs output error to " + logPath + " is :" + e.getMessage());
+			System.out.println("Logs output error to " + logFile + " is :" + e.getMessage());
 		}
 		SpringApplication.run(SignUpApplication.class, args);
 	}
@@ -58,7 +58,7 @@ public class SignUpApplication {
 	@Controller
 	public class SignUpWebController {
 
-		@PostMapping("/signup")
+		@PostMapping("/signup/start")
 		public String signup(@ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
 				try {
@@ -67,16 +67,16 @@ public class SignUpApplication {
 					attributes.addFlashAttribute("continue_url", continueUrl);
 				} catch (Exception e) {
 					attributes.addFlashAttribute("result", e.getMessage());
-					attributes.addFlashAttribute("continue_url", "/signup");
+					attributes.addFlashAttribute("continue_url", "/signup/start");
 				}
 			} else {
 				attributes.addFlashAttribute("result", "Please fill in username and password for signing up. Thanks!");
-				attributes.addFlashAttribute("continue_url", "/signup");
+				attributes.addFlashAttribute("continue_url", "/signup/start");
 			}
 			return "redirect:/signup/result";
 		}
 
-		@GetMapping("/signup")
+		@GetMapping("/signup/start")
 		public String signup(Model model) {
 			model.addAttribute("title", "Sign Up");
 			model.addAttribute("hdr_username", "Username");
