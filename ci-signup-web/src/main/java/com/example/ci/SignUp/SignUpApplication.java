@@ -29,8 +29,13 @@ public class SignUpApplication {
 	public static void main(String[] args) {
 		String redisHost = System.getenv("REDIS_HOST");
 		String redisSsl = System.getenv("REDIS_SSL");
-		String logPath = System.getenv("LOG_FILE");
+		String logFile = System.getenv("LOG_FILE");
 		continueUrl = System.getenv("CONTINUE_URL");
+
+		System.out.println("REDIS_HOST:" + redisHost);
+		System.out.println("REDIS_SSL:" + redisSsl);
+		System.out.println("LOG_FILE:" + logFile);
+		System.out.println("CONTINUE_URL:" + continueUrl);
 
 		// Connect to REDIS
 		try {
@@ -39,9 +44,9 @@ public class SignUpApplication {
 		} catch (Exception e){
 			System.out.println("Redis connection error to " + redisHost + ", SSL " + redisSsl + " is :" + e.getMessage());
 		}
-		System.out.println("Sending STDOUT logs to " + logPath);
+		System.out.println("Sending STDOUT logs to " + logFile);
 		try {
-			System.setOut(new PrintStream(new FileOutputStream(logPath, true)));
+			System.setOut(new PrintStream(new FileOutputStream(logFile, true)));
 		} catch (Exception e){
 			System.out.println("Logs output error to " + logPath + " is :" + e.getMessage());
 		}
