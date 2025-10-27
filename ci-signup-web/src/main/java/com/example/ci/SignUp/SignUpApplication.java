@@ -82,7 +82,8 @@ public class SignUpApplication {
 				headers.append(headerName).append(": ").append(request.getHeader(headerName)).append("\n");
 			}
 			System.out.println(headers.toString());
-			return "redirect:/signup/result";
+			String origin = request.getHeader("origin") != null ? request.getHeader("origin") : "";
+			return "redirect:" + origin + "/signup/result";
 		}
 
 		@GetMapping("/signup/start")
