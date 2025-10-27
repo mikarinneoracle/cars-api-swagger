@@ -39,11 +39,11 @@ public class SignUpApplication {
 		} catch (Exception e){
 			System.out.println("Redis connection error to " + redisHost + ", SSL " + redisSsl + " is :" + e.getMessage());
 		}
+		System.out.println("Sending STDOUT logs to " + logPath);
 		try {
 			System.setOut(new PrintStream(new FileOutputStream(logPath, true)));
-			System.out.println("Sending STDOUT logs to " + logPath);
 		} catch (Exception e){
-			System.out.println("Logs output file error to " + logPath + " is :" + e.getMessage());
+			System.out.println("Logs output error to " + logPath + " is :" + e.getMessage());
 		}
 		SpringApplication.run(SignUpApplication.class, args);
 	}
