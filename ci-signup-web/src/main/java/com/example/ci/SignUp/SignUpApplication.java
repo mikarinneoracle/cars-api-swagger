@@ -67,7 +67,7 @@ public class SignUpApplication {
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
-					attributes.addFlashAttribute("result", "Thank you " + signUpRequest.getUsername() + ".<br>Your sign up was successful.");
+					attributes.addFlashAttribute("result", "Your sign up was successful!");
 					attributes.addFlashAttribute("continue_url", continueUrl);
 					attributes.addFlashAttribute("continue_target", "_top"); // Replace from iframe to top level browser
 				} catch (Exception e) {
