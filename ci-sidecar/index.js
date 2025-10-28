@@ -65,7 +65,7 @@ async function mount(osClient, namespace, bucket, www_path, reloadDelay)
  //console.log(listObjectsResponse.listObjects.objects);
  files = listObjectsResponse.listObjects.objects;
  for(i=0; i < files.length; i++) {
-    console.log(files[i].name);
+    //console.log(files[i].name);
     await downloadFile(osClient, namespace, bucket, files[i], www_path);
  }
  if(parseInt(reloadDelay) > 0) {
@@ -87,7 +87,7 @@ async function downloadFile(osClient, namespace, bucket, file, path)
     const getObjectResponse = await osClient.getObject(getObjectRequest);
     //console.log(getObjectResponse);
     if(getObjectResponse.contentType.indexOf("directory") > 0) {
-      console.log(file.name + " is a directory, creating .. ");
+      //console.log(file.name + " is a directory, creating .. ");
       //console.log(path + "/" + file.name);
       fs.mkdir(path + "/" + file.name, (err) => {
         //if (err) console.log(err);
@@ -99,23 +99,23 @@ async function downloadFile(osClient, namespace, bucket, file, path)
      }
      var buffer = Buffer.concat(chunks);
      //console.log(buffer.toString());
-     console.log(path + "/" + file.name);
+     //console.log(path + "/" + file.name);
      if(file.name.indexOf(".htm") >  0)
      {
       await fs.writeFile(path + "/" + file.name, buffer.toString(), 'utf8', (err) => {
        if (err) {
-         console.log('Error writing file:', err);
+         //console.log('Error writing file:', err);
          return;
        }
-       console.log('File written successfully to' + path + "/" + file.name);
+       //console.log('File written successfully to' + path + "/" + file.name);
        });
      } else {
        await fs.writeFile(path + "/" + file.name, buffer, null, (err) => {
        if (err) {
-         console.log('Error writing file:', err);
+         //console.log('Error writing file:', err);
          return;
        }
-       console.log('File written successfully to' + path + "/" + file.name);
+       //console.log('File written successfully to' + path + "/" + file.name);
        });
      }
   } 

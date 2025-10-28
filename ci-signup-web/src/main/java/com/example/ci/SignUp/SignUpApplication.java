@@ -21,6 +21,7 @@ import redis.clients.jedis.Jedis;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Enumeration;
 
@@ -80,12 +81,13 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("continue_url", "/signup/start");
 				attributes.addFlashAttribute("continue_target", "");
 			}
-			/*
-			Cookie cookie = new Cookie("auth", signUpRequest.getUsername() + ":" + signUpRequest.getPassword());
-			cookie.setHttpOnly(true);
-			cookie.setSecure(true);
+
+			String bearer = signUpRequest.getUsername() + ":" + signUpRequest.getPassword();
+			String encodedCredentials = Base64.getEncoder().encodeToString(bearer.getBytes(StandardCharsets.UTF_8));
+			Cookie cookie = new Cookie("bearer", bearer);
+			//cookie.setHttpOnly(true);
+			//cookie.setSecure(true);
 			response.addCookie(cookie);
-			*/
 			String origin = request.getHeader("origin") != null ? request.getHeader("origin") : "";
 			return "redirect:" + origin + "/signup/result";
 		}
