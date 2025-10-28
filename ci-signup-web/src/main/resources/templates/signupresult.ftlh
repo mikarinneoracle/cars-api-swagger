@@ -26,7 +26,7 @@
 
                     ${result}
                     <p>
-                    <a href="${continue_url}" target="${continue_target}><input type="button" class="u-active-custom-color-3 u-align-center u-border-4 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-4 u-hidden-md u-hidden-xs u-hover-custom-color-3 u-hover-feature u-radius-50 u-text-active-white u-text-hover-white u-btn-2" />${continue_hdr}</a>
+                    <a href="${continue_url}" target="${continue_target}><input type="button" class="u-active-custom-color-5 u-align-center u-border-4 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-5 u-hover-feature u-radius-50 u-text-active-white u-text-hover-white u-btn-2" />${continue_hdr}</a>
 
               </div>
             </div>

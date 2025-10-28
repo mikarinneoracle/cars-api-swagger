@@ -28,7 +28,7 @@
                     <p class="u-align-left u-custom-font u-font-ubuntu u-text u-text-2">
                         ${hdr_username} <input type="text" name="username" /> <br>
                         ${hdr_password} <input type="password" name="password" /> <br>
-                        <a><input type="submit" value="${hdr_create_btn}" class="u-active-custom-color-3 u-align-left u-border-4 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-4 u-hidden-md u-hidden-xs u-hover-custom-color-3 u-hover-feature u-radius-50 u-text-active-white u-text-hover-white u-btn-2" /></a>
+                        <a><input type="submit" value="${hdr_create_btn}" class="u-active-custom-color-5 u-align-center u-border-4 u-border-grey-75 u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-5 u-hover-feature u-radius-50 u-text-active-white u-text-hover-white u-btn-2" /></a>
                     </p>
                 </form>
 
