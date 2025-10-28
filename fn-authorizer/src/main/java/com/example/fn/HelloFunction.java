@@ -104,6 +104,7 @@ public class HelloFunction {
                             if (decodedPassword.equals(password)) {
                                 System.out.println("REDIS AUTH SUCCESS " + decodedUsername + "/" + decodedPassword);
                                 IS_FOUND = true;
+                                username = decodedUsername;
                             } else {
                                 System.out.println("REDIS AUTH NO MATCH! " + decodedUsername + "/" + decodedPassword);
                             }
