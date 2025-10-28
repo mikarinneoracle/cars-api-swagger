@@ -83,8 +83,8 @@ public class SignUpApplication {
 			}
 
 			String bearer = signUpRequest.getUsername() + ":" + signUpRequest.getPassword();
-			String encodedCredentials = Base64.getEncoder().encodeToString(bearer.getBytes(StandardCharsets.UTF_8));
-			Cookie cookie = new Cookie("bearer", bearer);
+			String encodedBearer = Base64.getEncoder().encodeToString(bearer.getBytes(StandardCharsets.UTF_8));
+			Cookie cookie = new Cookie("bearer", encodedBearer);
 			//cookie.setHttpOnly(true);
 			//cookie.setSecure(true);
 			response.addCookie(cookie);

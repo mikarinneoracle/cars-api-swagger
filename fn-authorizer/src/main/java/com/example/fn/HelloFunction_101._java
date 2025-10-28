@@ -89,6 +89,7 @@ public class HelloFunction {
             if(redisConfig.length() > 0)
             {
                 System.out.println("Auth with Redis");
+                // Reading from Authorization Header contents
                 for (String token : tokenizedBody) {
                     System.out.println("TOKEN " + token);
                     if (token.indexOf("Basic ") > -1) {
@@ -117,6 +118,7 @@ public class HelloFunction {
 
             if(!IS_FOUND) {
                 System.out.println("Fallback - Auth with config");
+                // Reading from Authorization Header contents
                 for (String configToken : tokenizedConfig) {
                     for (String token : tokenizedBody) {
                         if (token.indexOf("Basic ") > -1 && configToken.length() > 0) {

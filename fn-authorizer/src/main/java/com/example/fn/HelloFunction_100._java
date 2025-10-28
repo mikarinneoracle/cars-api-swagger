@@ -48,6 +48,7 @@ public class HelloFunction {
             String[] bodyTokens = body.split(",");
             List<String> tokenizedBody = Arrays.stream(bodyTokens).map(String::trim).collect(Collectors.toList());
 
+            // Reading Authorization Header contents
             for (String configToken : tokenizedConfig) {
                 for (String token : tokenizedBody) {
                     if (token.indexOf("Basic ") > -1 && configToken.length() > 0) {
