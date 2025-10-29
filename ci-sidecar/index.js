@@ -38,9 +38,9 @@ const namespace = nsResponse.value;
 
 mount(osClient, namespace, bucket, www_path, reloadDelay);
     
-startTail(log_ocid, log_file, logHeader);
+startTail(logClient, log_ocid, log_file, logHeader);
 
-async function startTail(log_ocid, log_file, logHeader)
+async function startTail(logClient, log_ocid, log_file, logHeader)
 {
   const tail = new tailfile(log_file, {encoding: 'utf8'})
   .on('data', (chunk) => {
@@ -58,7 +58,7 @@ async function startTail(log_ocid, log_file, logHeader)
     console.log("Cannot start.  Does " + log_file + "  exist?")
     setTimeout(function() {
         console.log("Trying again to open " + log_file + " ..");
-        startTail(log_ocid, log_file, logHeader);
+        startTail(logClient, log_ocid, log_file, logHeader);
     }, 5000);
   });
  }
