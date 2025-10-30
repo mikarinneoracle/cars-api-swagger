@@ -7,11 +7,11 @@ const fs = require("fs");
 
 async function start() {
 
-const log_ocid = process.env.log_ocid;
-console.log("OCI LOG:" + log_ocid);
+const logOCID = process.env.log_ocid;
+console.log("OCI LOG:" + logOCID);
 
-const log_file = process.env.log_file;
-console.log("LOG FILE:" + log_file);
+const logFile = process.env.log_file;
+console.log("LOG FILE:" + logFile);
 
 const www_path = process.env.www_path;
 console.log("WWW DATA:" + www_path);
@@ -38,14 +38,14 @@ const namespace = nsResponse.value;
 
 mount(osClient, namespace, bucket, www_path, reloadDelay);
     
-startTail(logClient, log_ocid, log_file, logHeader);
+startTail(logClient, logOCID, logFile, logHeader);
 
-async function startTail(logClient, log_ocid, log_file, logHeader)
+async function startTail(logClient, logOCID, logFile, logHeader)
 {
-  const tail = new tailfile(log_file, {encoding: 'utf8'})
+  const tail = new tailfile(logFile, {encoding: 'utf8'})
   .on('data', (chunk) => {
     //console.log(`${chunk}`)
-    writeLog(logClient, log_ocid, log_file, log_file, `${chunk}`)
+    writeLog(logClient, logOCID, logHeader, logFile, `${chunk}`)
   })
   .on('tail_error', (err) => {
     console.error('TailFile had an error!', err)
@@ -55,10 +55,10 @@ async function startTail(logClient, log_ocid, log_file, logHeader)
   })
   .start()
   .catch((err) => {
-    console.log("Cannot start.  Does " + log_file + "  exist?")
+    console.log("Cannot start.  Does " + logFile + "  exist?")
     setTimeout(function() {
-        console.log("Trying again to open " + log_file + " ..");
-        startTail(logClient, log_ocid, log_file, logHeader);
+        console.log("Trying again to open " + logFile + " ..");
+        startTail(logClient, logOCID, logFile, logHeader);
     }, 5000);
   });
  }
@@ -130,7 +130,7 @@ async function downloadFile(osClient, namespace, bucket, file, path)
   } 
 }
 
-async function writeLog(logClient, log_ocid, subject, type, data)
+async function writeLog(logClient, logOCID, subject, type, data)
 {
   try {
         const putLogsDetails = {
@@ -150,7 +150,7 @@ async function writeLog(logClient, log_ocid, subject, type, data)
           ]
         };
         var putLogsRequest = loggingingestion.requests.PutLogsRequest = {
-          logId: log_ocid,
+          logId: logOCID,
           putLogsDetails: putLogsDetails,
           timestampOpcAgentProcessing: new Date()
         };
