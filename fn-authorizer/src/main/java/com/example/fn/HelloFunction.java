@@ -1,6 +1,5 @@
 package com.example.fn;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fnproject.fn.api.FnConfiguration;
 import com.fnproject.fn.api.Headers;
 import com.fnproject.fn.api.InputEvent;
@@ -13,7 +12,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -27,11 +25,13 @@ import redis.clients.jedis.Jedis;
 
 public class HelloFunction {
 
+    String authConfig = "";
     String redisConfig = "";
     Jedis jedis = null;
 
     @FnConfiguration
     public void setUp(RuntimeContext ctx) throws Exception {
+        authConfig = ctx.getConfigurationByKey("config").orElse(System.getenv().getOrDefault("config", ""));
         redisConfig = ctx.getConfigurationByKey("redis").orElse(System.getenv().getOrDefault("redis", ""));
         try {
             System.out.println("Redis config: " + redisConfig);
@@ -41,6 +41,27 @@ public class HelloFunction {
         }
     }
 
+    // Added main to do testing with local Redis
+    public static void main( String[] args ) throws IOException, InterruptedException
+    {
+        if(args.length > 1) {
+            Jedis jedis = new Jedis(args[0], 6379, Boolean.parseBoolean(args[1]));
+            String authToken = "Zm9vOmJhcg==";
+            byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+            String decodedString = new String(decodedBytes);
+            String[] decodedTokens = decodedString.split(":");
+            String decodedUsername = decodedTokens[0];
+            String decodedPassword = decodedTokens[1];
+            String password = jedis.get(decodedUsername);
+            if (decodedPassword.equals(password)) {
+                System.out.println("AUTH SUCCESS " + decodedUsername);
+            } else {
+                System.out.println("AUTH NO MATCH " + decodedUsername);
+            }
+        } else {
+            System.out.println("Give redis address ssl (true/false) as parameters.");
+        }
+    }
 
     public String handleRequest(final HTTPGatewayContext hctx, final InputEvent input) {
 
@@ -48,48 +69,72 @@ public class HelloFunction {
         String ret = "";
         String username = "";
 
-        String json = input.consumeBody((InputStream is) -> {
+        String body = input.consumeBody((InputStream is) -> {
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
                 return reader.lines().collect(Collectors.joining());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-        System.out.println("JSON: " + json);
+        System.out.println("Body: " + body);
 
-        if(json.length() > 0) {
-            // Search from Redis - no fallback
-            // Reading Cookie Header contents
-            if(redisConfig.length() > 0) {
+        String[] configTokens = authConfig.split(",");
+        List<String> tokenizedConfig = Arrays.stream(configTokens).map(String::trim).collect(Collectors.toList());
+
+        if(body.length() > 0) {
+            String[] bodyTokens = body.split(",");
+            List<String> tokenizedBody = Arrays.stream(bodyTokens).map(String::trim).collect(Collectors.toList());
+
+            // Search from Redis - if not found fallback to function config
+            if(redisConfig.length() > 0)
+            {
                 System.out.println("Auth with Redis");
-                try {
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    Body body = objectMapper.readValue(json, Body.class);
-                    System.out.println("Body token: " + body.token);
-                    String[] bearerTokens = body.token.split(";");
-                    List<String> tokenizedBearer = Arrays.stream(bearerTokens).map(String::trim).collect(Collectors.toList());
-                    for (String cookie : tokenizedBearer) {
-                        System.out.println(cookie);
-                        if (cookie.indexOf("bearer=") > -1) {
-                            String bearer = cookie.substring(cookie.indexOf("bearer=") + 7, cookie.length());
-                            if (bearer.length() > 0) {
-                                String decodedBearer = new String(Base64.getDecoder().decode(bearer), StandardCharsets.UTF_8);
-                                String[] decodedBearerTokens = decodedBearer.split(":");
-                                String decodedUsername = decodedBearerTokens[0];
-                                String decodedPassword = decodedBearerTokens[1];
-                                String password = jedis.get(decodedUsername);
-                                if (decodedPassword.equals(password)) {
-                                    System.out.println("REDIS AUTH SUCCESS " + decodedUsername + "/" + decodedPassword);
-                                    IS_FOUND = true;
-                                    username = decodedUsername;
-                                } else {
-                                    System.out.println("REDIS AUTH NO MATCH! " + decodedUsername + "/" + decodedPassword);
-                                }
+                // Reading from Authorization Header contents
+                for (String token : tokenizedBody) {
+                    System.out.println("TOKEN " + token);
+                    if (token.indexOf("Basic ") > -1) {
+                        String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                        System.out.println("TOKEN " + authToken);
+                        byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+                        String decodedString = new String(decodedBytes);
+                        String[] decodedTokens = decodedString.split(":");
+                        String decodedUsername = decodedTokens[0];
+                        String decodedPassword = decodedTokens[1];
+                        try {
+                            String password = jedis.get(decodedUsername);
+                            if (decodedPassword.equals(password)) {
+                                System.out.println("REDIS AUTH SUCCESS " + decodedUsername + "/" + decodedPassword);
+                                IS_FOUND = true;
+                                username = decodedUsername;
+                            } else {
+                                System.out.println("REDIS AUTH NO MATCH! " + decodedUsername + "/" + decodedPassword);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Redis error:" + e.getMessage());
+                        }
+                    }
+                }
+            }
+
+            if(!IS_FOUND) {
+                System.out.println("Fallback - Auth with config");
+                // Reading from Authorization Header contents
+                for (String configToken : tokenizedConfig) {
+                    for (String token : tokenizedBody) {
+                        if (token.indexOf("Basic ") > -1 && configToken.length() > 0) {
+                            String authToken = token.substring(token.indexOf("Basic ") + 6, token.indexOf("\"}"));
+                            if (authToken.equals(configToken)) {
+                                System.out.println("AUTH SUCCESS " + authToken + " == " + configToken);
+                                byte[] decodedBytes = Base64.getDecoder().decode(authToken);
+                                String decodedString = new String(decodedBytes);
+                                String[] decodedTokens = decodedString.split(":");
+                                username = decodedTokens[0];
+                                IS_FOUND = true;
+                            } else {
+                                System.out.println("AUTH NO MATCH " + authToken + " <> " + configToken);
                             }
                         }
                     }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -104,14 +149,14 @@ public class HelloFunction {
             ret = "{ " +
                     "\"active\": true," +
                     "\"principal\": \"myprincipal\"," +
-                    "\"scope\": [\"Cars-API\"]," +
+                    "\"scope\": [\"fnbasicauthtest\"]," +
                     "\"expiresAt\": \"" + expiryDate + "\"," +
                     "\"context\": { \"username\": \"" + username + "\" }" +
                     " }";
         } else {
             ret = "{ " +
                     "\"active\": false," +
-                    "\"wwwAuthenticate\": \"Bearer realm=\\\"somesite.io\\\"\"" +
+                    "\"wwwAuthenticate\": \"Basic realm=\\\"somesite.io\\\"\"" +
                     " }";
         }
         System.out.println(ret);
