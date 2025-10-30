@@ -96,7 +96,7 @@ public class SignUpApplication {
 		@GetMapping("/signup/start")
 		public String signup(Model model) {
 			model.addAttribute("hdr_username", "Username");
-			model.addAttribute("hdr_password", "Password");
+			model.addAttribute("hdr_password", "Password&nbsp;");
 			model.addAttribute("hdr_create_btn", "Sign Up");
 			return "signup"; // returns the name of the FreeMarker template
 		}

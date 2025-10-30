@@ -45,7 +45,7 @@ async function startTail(logClient, logOCID, logFile, logHeader)
   const tail = new tailfile(logFile, {encoding: 'utf8'})
   .on('data', (chunk) => {
     //console.log(`${chunk}`)
-    writeLog(logClient, logOCID, logHeader, logFile, `${chunk}`)
+    writeLog(logClient, logOCID, logFile, logHeader, `${chunk}`)
   })
   .on('tail_error', (err) => {
     console.error('TailFile had an error!', err)
