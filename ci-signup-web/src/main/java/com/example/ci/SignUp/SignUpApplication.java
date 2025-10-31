@@ -83,12 +83,6 @@ public class SignUpApplication {
 				attributes.addFlashAttribute("continue_target", "");
 			}
 
-			String bearer = signUpRequest.getUsername() + ":" + signUpRequest.getPassword();
-			String encodedBearer = Base64.getEncoder().encodeToString(bearer.getBytes(StandardCharsets.UTF_8));
-			Cookie cookie = new Cookie("bearer", encodedBearer);
-			//cookie.setHttpOnly(true);
-			//cookie.setSecure(true);
-			response.addCookie(cookie);
 			String origin = request.getHeader("origin") != null ? request.getHeader("origin") : "";
 			return "redirect:" + origin + "/signup/result";
 		}
