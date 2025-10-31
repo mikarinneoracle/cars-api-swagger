@@ -6,39 +6,38 @@ const objectstorage = require("oci-objectstorage");
 const fs = require("fs");
 
 async function start() {
+    const logOCID = process.env.log_ocid;
+    console.log("OCI LOG:" + logOCID);
 
-const logOCID = process.env.log_ocid;
-console.log("OCI LOG:" + logOCID);
+    const logFile = process.env.log_file;
+    console.log("LOG FILE:" + logFile);
 
-const logFile = process.env.log_file;
-console.log("LOG FILE:" + logFile);
+    const www_path = process.env.www_path;
+    console.log("WWW DATA:" + www_path);
 
-const www_path = process.env.www_path;
-console.log("WWW DATA:" + www_path);
+    const bucket = process.env.os_bucket;
+    console.log("OS BUCKET:" + bucket);
 
-const bucket = process.env.os_bucket;
-console.log("OS BUCKET:" + bucket);
+    const reloadDelay = process.env.www_reload_delay;
+    console.log("OS BUCKET RELOAD (ms):" + reloadDelay);
 
-const reloadDelay = process.env.www_reload_delay;
-console.log("OS BUCKET RELOAD (ms):" + reloadDelay);
+    const logHeader = process.env.log_header;
+    console.log("LOG HEADER:" + logHeader);
 
-const logHeader = process.env.log_header;
-console.log("LOG HEADER:" + logHeader);
+    //const provider = new common.ConfigFileAuthenticationDetailsProvider("~/.oci/config");
+    const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
 
-//const provider = new common.ConfigFileAuthenticationDetailsProvider("~/.oci/config");
-const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
+    const logClient = new loggingingestion.LoggingClient({ authenticationDetailsProvider: provider });
 
-const logClient = new loggingingestion.LoggingClient({ authenticationDetailsProvider: provider });
+    const osClient = new objectstorage.ObjectStorageClient({ authenticationDetailsProvider: provider });
 
-const osClient = new objectstorage.ObjectStorageClient({ authenticationDetailsProvider: provider });
+    const nsRequest = {};
+    const nsResponse = await osClient.getNamespace(nsRequest);
+    const namespace = nsResponse.value;
 
-const nsRequest = {};
-const nsResponse = await osClient.getNamespace(nsRequest);
-const namespace = nsResponse.value;
-
-mount(osClient, namespace, bucket, www_path, reloadDelay);
-    
-startTail(logClient, logOCID, logFile, logHeader);
+    mount(osClient, namespace, bucket, www_path, reloadDelay);    
+    startTail(logClient, logOCID, logFile, logHeader);
+}
 
 async function startTail(logClient, logOCID, logFile, logHeader)
 {
@@ -62,7 +61,6 @@ async function startTail(logClient, logOCID, logFile, logHeader)
     }, 5000);
   });
  }
-}
 
 async function mount(osClient, namespace, bucket, www_path, reloadDelay)
 {
