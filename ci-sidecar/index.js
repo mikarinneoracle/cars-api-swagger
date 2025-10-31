@@ -12,8 +12,8 @@ async function start() {
     const logFile = process.env.log_file;
     console.log("LOG FILE:" + logFile);
 
-    const www_path = process.env.www_path;
-    console.log("WWW DATA:" + www_path);
+    const wwwPath = process.env.www_path;
+    console.log("WWW DATA:" + wwwPath);
 
     const bucket = process.env.os_bucket;
     console.log("OS BUCKET:" + bucket);
@@ -35,7 +35,7 @@ async function start() {
     const nsResponse = await osClient.getNamespace(nsRequest);
     const namespace = nsResponse.value;
 
-    mount(osClient, namespace, bucket, www_path, reloadDelay);    
+    mount(osClient, namespace, bucket, wwwPath, reloadDelay);    
     startTail(logClient, logOCID, logFile, logHeader);
 }
 
@@ -62,7 +62,7 @@ async function startTail(logClient, logOCID, logFile, logHeader)
   });
  }
 
-async function mount(osClient, namespace, bucket, www_path, reloadDelay)
+async function mount(osClient, namespace, bucket, wwwPath, reloadDelay)
 {
  const listObjectsRequest = {
       namespaceName: namespace,
@@ -73,11 +73,11 @@ async function mount(osClient, namespace, bucket, www_path, reloadDelay)
  files = listObjectsResponse.listObjects.objects;
  for(i=0; i < files.length; i++) {
     //console.log(files[i].name);
-    await downloadFile(osClient, namespace, bucket, files[i], www_path);
+    await downloadFile(osClient, namespace, bucket, files[i], wwwPath);
  }
  if(parseInt(reloadDelay) > 0) {
   setTimeout(function() {
-    mount(osClient, namespace, bucket, www_path, reloadDelay);
+    mount(osClient, namespace, bucket, wwwPath, reloadDelay);
   }, parseInt(reloadDelay));   
  } else {
     console.log("No reloading of bucket " + bucket + " since reload delay was " + reloadDelay);
