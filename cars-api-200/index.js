@@ -141,7 +141,7 @@ app.get('/car/:id', (req, res) => {
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
   var jsonHdr = { "user": user, "api": API};
   if(car) {
-    var jsonData = { "car": { "name": car.name } };
+    var jsonData = { "car": { "name": car.name, "price": car.price } };
     var json = {jsonHdr, jsonData};
     res.send(JSON.stringify(jsonData));
   } else {
