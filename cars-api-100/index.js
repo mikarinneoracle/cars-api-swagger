@@ -5,6 +5,7 @@ const app = express();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
+const API = "100";
 const port = 3000;
 const cars = [{ "id": 1, "name": "Toyota" }, { "id": 2, "name": "BMW" }, { "id": 3, "name": "Volvo" }, { "id": 4, "name": "Tesla" }];
 
@@ -96,22 +97,27 @@ app.use(
 
 app.get('/cars', (req, res) => {
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
-  var json = { "cars": cars };
-  console.log("user: " + user + ", api-100:" + JSON.stringify(json));
+  var jsonData = { "cars": cars };
+  var jsonHdr = { "user": user, "api": API};
+  var json = {jsonHdr, jsonData};
+  console.log(JSON.stringify(json));
   res.send(JSON.stringify(json));
 });
 
 app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
+  var jsonHdr = { "user": user, "api": API};
   if(car) {
-    var json = { "car": { "name": car.name } };
-    console.log("user: " + user + ", api-100:" + JSON.stringify(json));
+    var jsonData = { "car": { "name": car.name } };
+    var json = {jsonHdr, jsonData};
     res.send(JSON.stringify(json));
   } else {
-    console.log("user: " + user + ", api-100:Not found, car id =  " + req.params['id']);
+    var jsonErr = {"user: " + user, "error": "Not found, car id =  " + req.params['id']);
+    var json = {jsonHdr, jsonErr};
     res.status(404).send("Not Found"); 
   }
+  console.log(JSON.stringify(json));
 });
 
 app.listen(3000);
