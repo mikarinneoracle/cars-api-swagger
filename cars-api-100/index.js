@@ -113,7 +113,7 @@ app.get('/car/:id', (req, res) => {
     var json = {jsonHdr, jsonData};
     res.send(JSON.stringify(json));
   } else {
-    var jsonErr = {"user: " + user, "error": "Not found, car id =  " + req.params['id']);
+    var jsonErr = { "user": user, "error": "Not found, car id =  " + req.params['id'] };
     var json = {jsonHdr, jsonErr};
     res.status(404).send("Not Found"); 
   }
