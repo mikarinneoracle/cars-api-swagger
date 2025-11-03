@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "vault-pg"]
     paths-ignore:
       - 'README.md'
       - 'www-data/**'
