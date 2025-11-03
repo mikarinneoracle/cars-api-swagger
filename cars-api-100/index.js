@@ -100,8 +100,8 @@ app.get('/cars', (req, res) => {
   var jsonData = { "cars": cars };
   var jsonHdr = { "user": user, "api": API};
   var json = {jsonHdr, jsonData};
+  res.send(JSON.stringify(jsonData));
   console.log(JSON.stringify(json));
-  res.send(JSON.stringify(json));
 });
 
 app.get('/car/:id', (req, res) => {
@@ -111,7 +111,7 @@ app.get('/car/:id', (req, res) => {
   if(car) {
     var jsonData = { "car": { "name": car.name } };
     var json = {jsonHdr, jsonData};
-    res.send(JSON.stringify(json));
+    res.send(JSON.stringify(jsonData));
   } else {
     var jsonErr = { "user": user, "error": "Not found, car id =  " + req.params['id'] };
     var json = {jsonHdr, jsonErr};
