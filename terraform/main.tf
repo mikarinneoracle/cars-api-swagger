@@ -163,7 +163,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   }
 
   container_restart_policy = "ON_FAILURE"
-  display_name             = "Nginx with OCI SDK sidecar and Redis signup"
+  display_name             = "Nginx with OCI SDK sidecar, Redis signup and PostgreSQL for API 3.0.0"
 
   graceful_shutdown_timeout_in_seconds = "10"
 
