@@ -64,6 +64,17 @@
   padding: 18px 57px 19px;
 }
 
+.u-section-1 .u-btn-4 {
+  letter-spacing: 1px;
+  transition-duration: 0.5s;
+  text-transform: none;
+  font-weight: 600;
+  background-image: none;
+  border-style: solid;
+  margin: 20px auto 0;
+  padding: 18px 57px 19px;
+}
+
 .u-section-1 .u-image-1 {
   min-height: 0;
   pointer-events: auto;

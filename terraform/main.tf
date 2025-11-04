@@ -86,7 +86,7 @@ resource "oci_container_instances_container_instance" "container_instance" {
   containers {
 
     image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.app_image_4}"
-    display_name = "app-3"
+    display_name = "app-4"
     environment_variables = {
       "REDIS_HOST" = var.redis_host
       "REDIS_SSL" = "true"

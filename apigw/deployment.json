@@ -84,6 +84,49 @@
     {
       "backend": {
         "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:3002/docs/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/cars-300/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:3002/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/api-300/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "AUTHENTICATION_ONLY"
+        },
+        "headerTransformations": {
+          "setHeaders": {
+            "items": [
+              {
+                "ifExists": "OVERWRITE",
+                "name": "username",
+                "values": [
+                  "${request.auth[username]}"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
         "url": "http://{CI_PRIVATE_IP}:3001/docs/${request.path[path]}"
       },
       "methods": [
