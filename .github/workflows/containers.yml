@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "vault-pg"]
     paths-ignore:
       - 'README.md'
       - 'www-data/**'
@@ -34,9 +34,17 @@ jobs:
         docker build . --build-arg APIGW_PATH=/api-200 -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:2.0.0
         cd ..
+        cd cars-api-300-pg
+        docker build . --build-arg APIGW_PATH=/api-300 -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:3.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/cars-api:3.0.0
+        cd ..
         cd ci-sidecar
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
+        cd ..
+        cd ci-sidecar-vault
+        docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
         cd ..
         cd fn-authorizer
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.1.0

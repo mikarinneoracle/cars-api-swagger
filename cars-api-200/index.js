@@ -5,6 +5,7 @@ const app = express();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
+const API = "200";
 const port = 3001;
 const cars = [{ "id": 1, "name": "Toyota", "price": 20500 }, { "id": 2, "name": "BMW", "price": 47000 }, { "id": 3, "name": "Volvo", "price": 52100 }, { "id": 4, "name": "Tesla", "price": 63900 }];
 
@@ -127,35 +128,44 @@ app.use(
 
 app.get('/cars', (req, res) => {
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
-  var json = { "cars": cars };
-  console.log("user: " + user + ", api-200:" + JSON.stringify(json));
-  res.send(JSON.stringify(json));
+  var jsonData = { "cars": cars };
+  var jsonHdr = { "user": user, "api": API};
+  var json = {jsonHdr, jsonData};
+  res.send(JSON.stringify(jsonData));
+  console.log(JSON.stringify(json));
 });
+
 
 app.get('/car/:id', (req, res) => {
   var car = cars.find(element => element.id == req.params['id']);
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
+  var jsonHdr = { "user": user, "api": API};
   if(car) {
-    var json = { "car": { "name": car.name, "price": car.price } };
-    console.log("user: " + user + ", api-200:" + JSON.stringify(json));
-    res.send(JSON.stringify(json));
+    var jsonData = { "car": { "name": car.name, "price": car.price } };
+    var json = {jsonHdr, jsonData};
+    res.send(JSON.stringify(jsonData));
   } else {
-    console.log("user: " + user + ", api-200:Car not found, car id =  " + req.params['id']);
+    var jsonErr = { "user": user, "error": "Not found, car id =  " + req.params['id'] };
+    var json = {jsonHdr, jsonErr};
     res.status(404).send("Not Found"); 
   }
+  console.log(JSON.stringify(json));
 });
 
 app.get('/price/:name', (req, res) => {
   var car = cars.find(element => element.name == req.params['name']);
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
+  var jsonHdr = { "user": user, "api": API};
   if(car) {
-    var json = { "car": { "id": car.id, "price": car.price } };
-    console.log("user: " + user + ", api-200:" + JSON.stringify(json));
-    res.send(JSON.stringify(json));
+    var jsonData = { "car": { "id": car.id, "price": car.price } };
+    var json = {jsonHdr, jsonData};
+    res.send(JSON.stringify(jsonData));
   } else {
-    console.log("user: " + user + ", api-200:Price not found, car name =  " + req.params['name']);
+    var jsonErr = { "user": user, "error": "Not found, car name =  " + req.params['name'] };
+    var json = {jsonHdr, jsonErr};
     res.status(404).send("Not Found"); 
   }
+  console.log(JSON.stringify(json));
 });
 
 app.listen(port);

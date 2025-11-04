@@ -44,7 +44,8 @@ async function startTail(logClient, logOCID, logFile, logHeader)
   const tail = new tailfile(logFile, {encoding: 'utf8'})
   .on('data', (chunk) => {
     //console.log(`${chunk}`)
-    writeLog(logClient, logOCID, logFile, logHeader, `${chunk}`)
+  //writeLog(logClient, logOCID, source,  subject, type,       data)
+    writeLog(logClient, logOCID, logFile, logFile, logHeader, `${chunk}`)
   })
   .on('tail_error', (err) => {
     console.error('TailFile had an error!', err)
@@ -128,7 +129,7 @@ async function downloadFile(osClient, namespace, bucket, file, path)
   } 
 }
 
-async function writeLog(logClient, logOCID, subject, type, data)
+async function writeLog(logClient, logOCID, source, subject, type, data)
 {
   try {
         const putLogsDetails = {
@@ -141,7 +142,7 @@ async function writeLog(logClient, logOCID, subject, type, data)
                   data: data
                 }
               ],
-              source: "nginx-logging-sidecar",
+              source: source,
               type: type,
               subject: subject
             }
