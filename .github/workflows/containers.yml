@@ -41,6 +41,7 @@ jobs:
         cd ci-sidecar
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
         docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar:1.0.0
+        cd ..
         cd ci-sidecar-vault
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
         docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
