@@ -7,7 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 const pg = require('pg');
 
 const API = "300";
-const port = 8080;
+const port = 3002;
 const { Pool } = pg;
 var pool; 
 
