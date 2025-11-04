@@ -46,4 +46,4 @@ async function mount(secretsClient, secretOCID, secretsFile)
     }
 }
 
-start(); 
+start();
