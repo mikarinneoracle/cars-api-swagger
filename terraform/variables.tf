@@ -24,21 +24,30 @@ variable "sidecar_image" {
   description = "CI sidecar image e.g. ci-sidecar:1.0.0"
 }
 
+variable "sidecar_vault_image" {
+  type = string
+  description = "CI sidecar for OCI Vault image e.g. ci-sidecar-vault:1.0.0"
+}
+
 #### LIST ALL APP IMAGES HERE ####
 
 variable "app_image_1" {
   type = string
-  description = "App 1 image e.g. car-api:1.0.0-free"
+  description = "App 1 image e.g. cars-api:1.0.0-free"
 }
 
 variable "app_image_2" {
   type = string
-  description = "App 2 image e.g. car-api:2.0.0"
+  description = "App 2 image e.g. cars-api:2.0.0"
 }
 
 variable "app_image_3" {
+  description = "App 3 image e.g. cars-api:3.0.0"
+}
+
+variable "app_image_4" {
   type = string
-  description = "App 3 image e.g. ci-signup-web"
+  description = "App 4 image e.g. ci-signup-web"
 }
 
 ##################################
@@ -110,4 +119,22 @@ variable "redis_host" {
   type    = string
   default = ""
   description = "OCI Cache OCID when using Redis for logins"
+}
+
+variable "vault_secret_ocid" {
+  type    = string
+  default = ""
+  description = "OCI Vault secret OCID for PostgreSQL connection string"
+}
+
+variable "dbconfig_mount_path" {
+  type    = string
+  default = "/dbconfig"
+  description = "OCI Vault secret path for Postgres connection url"
+}
+
+variable "dbconfig_mount_name" {
+  type    = string
+  default = "dbconfig"
+  description = "OCI Vault secret mount name for Postgres connection url"
 }
