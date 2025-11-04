@@ -62,9 +62,10 @@ resource "oci_container_instances_container_instance" "container_instance" {
   containers {
 
     image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.app_image_3}"
-    display_name = "app-2"
+    display_name = "app-3"
     environment_variables = {
       "log_file" = "${var.log_mount_path}/${var.log_file}"
+      "secrets_file" = "${var.dbconfig_mount_path}/connection.txt"
     }
     
     is_resource_principal_disabled = "false"
@@ -137,7 +138,8 @@ resource "oci_container_instances_container_instance" "container_instance" {
     image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.sidecar_vault_image}"
     display_name = "sidecar for OCI Vault"
     environment_variables = {
-        "secrets_file" = "${var.www_mount_path}/connection.txt"
+        "secrets_file" = "${var.dbconfig_mount_path}/connection.txt"
+        "secret_ocid" = var.vault_secret_ocid
     }
 
     is_resource_principal_disabled = "false"

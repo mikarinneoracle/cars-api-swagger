@@ -14,6 +14,9 @@ var pool;
 const logFile = process.env.log_file == null ? "./app.log" : process.env.log_file;
 console.log("APP LOG: " + logFile);
 
+const secretsFile = process.env.secrets_file;
+console.log("SECRETS FILE:" + secretsFile);
+
 // Create a write stream to append logs to a file
 const logStream = fs.createWriteStream(logFile, { flags: 'a' });
 
@@ -30,7 +33,7 @@ process.stdout.write = (chunk, ...args) => {
   return origStdoutWrite(chunk, ...args); // still print to console
 };
 
-waitFor("./connection.txt");
+waitFor(secretsFile);
  
 async function waitFor(configFile) {
     try {
