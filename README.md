@@ -1,8 +1,19 @@
 # Container Instances Cars API with Swagger, NGINX and OCI Logging
 
-<img src="./main.png" width="200"/>
+<table>
+    <tr>
+        <td width="200">
+        <img src="./main.png" width="200"/>
+        <p>
+        Image by <a href="http://www.freepik.com">Freepik</a>
+        </td>
+        <td width="800">
+        <img src="arch5.png" width="800"/>
+        </td>
+    </tr>
+</table>
+    
 <p>
-Image by <a href="http://www.freepik.com">Freepik</a>
 
 ## Build containers
 

@@ -138,3 +138,14 @@ variable "dbconfig_mount_name" {
   default = "dbconfig"
   description = "OCI Vault secret mount name for Postgres connection url"
 }
+
+variable "datapump_bucket" {
+  type    = string
+  description = "Datapump Object Storage bucket name"
+}
+
+variable "datapump_reload_delay" {
+  type    = number
+  default = 30000
+  description = "Datapump Object Storage data reload interval in ms, use zero for never"
+}

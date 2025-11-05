@@ -136,12 +136,14 @@ resource "oci_container_instances_container_instance" "container_instance" {
   
   containers {
     image_url    = "${var.ocir_region}/${data.oci_objectstorage_namespace.objectstorage_namespace.namespace}/${var.sidecar_vault_image}"
-    display_name = "sidecar for OCI Vault"
+    display_name = "sidecar for OCI Vault and DB datapump from Object Storage"
     environment_variables = {
         "secrets_file" = "${var.dbconfig_mount_path}/connection.txt"
         "secret_ocid" = var.vault_secret_ocid
+        "os_bucket" = var.datapump_bucket
+        "datapump_reload_delay" = var.datapump_reload_delay
     }
-
+    
     is_resource_principal_disabled = "false"
     resource_config {
       memory_limit_in_gbs = "1.0"
