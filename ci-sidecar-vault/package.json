@@ -12,6 +12,8 @@
     "oci-core": "^2.52.0",
     "oci-identity": "^2.52.0",
     "oci-secrets": "^2.120.0",
-    "oci-vault": "^2.52.0"
+    "oci-vault": "^2.52.0",
+    "pg": "^8.16.3",
+    "oci-objectstorage": "^2.119.0"
   }
 }

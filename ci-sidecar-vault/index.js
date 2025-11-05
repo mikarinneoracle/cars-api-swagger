@@ -2,6 +2,8 @@ const identity = require("oci-identity");
 const common = require("oci-common");
 const secrets = require("oci-secrets");
 const fs = require("fs");
+const objectstorage = require("oci-objectstorage");
+const pg = require('pg');
 
 async function start() {
     const secretOCID = process.env.secret_ocid;
@@ -10,11 +12,23 @@ async function start() {
     const secretsFile = process.env.secrets_file;
     console.log("SECRETS FILE:" + secretsFile);
     
-    //const provider = new common.ConfigFileAuthenticationDetailsProvider("~/.oci/config");
-    const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
+    const bucket = process.env.os_bucket;
+    console.log("OS BUCKET:" + bucket);
+
+    const reloadDelay = process.env.www_reload_delay;
+    console.log("OS BUCKET RELOAD (ms):" + reloadDelay);
+    
+    const provider = new common.ConfigFileAuthenticationDetailsProvider("~/.oci/config");
+    //const provider = common.ResourcePrincipalAuthenticationDetailsProvider.builder();
 
     const secretsClient = new secrets.SecretsClient({ authenticationDetailsProvider: provider });
-    mount(secretsClient, secretOCID, secretsFile);  
+    const osClient = new objectstorage.ObjectStorageClient({ authenticationDetailsProvider: provider });
+
+    const nsRequest = {};
+    const nsResponse = await osClient.getNamespace(nsRequest);
+    const namespace = nsResponse.value;
+    
+    await mount(secretsClient, secretOCID, secretsFile);
 }
 
 async function mount(secretsClient, secretOCID, secretsFile)
