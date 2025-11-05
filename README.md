@@ -8,7 +8,7 @@
         Image by <a href="http://www.freepik.com">Freepik</a>
         </td>
         <td width="800">
-        <img src="arch.png" width="800"/>
+        <img src="arch1.png" width="800"/>
         </td>
     </tr>
 </table>
