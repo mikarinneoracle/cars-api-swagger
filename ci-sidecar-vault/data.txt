@@ -3,3 +3,4 @@
 3, 'Volvo', 52100
 4, 'Tesla', 63900
 5, 'Renault', 39900
+6, 'Mercedes-Benz', 87200

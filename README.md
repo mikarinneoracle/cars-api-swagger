@@ -1,4 +1,4 @@
-# Container Instances Cars API with Swagger, NGINX and OCI Logging
+## Container Instances Cars API with Swagger, NGINX, OCI Logging, API Gateway with Authorizer Fn, Redis, PostgreSQL, OCI Vault
 
 <table>
     <tr>
