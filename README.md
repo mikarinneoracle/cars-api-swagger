@@ -1,6 +1,6 @@
 # Container Instances Cars API with Swagger, NGINX and OCI Logging
 
-<table>
+<table border="0">
     <tr>
         <td width="200">
         <img src="./main.png" width="200"/>
