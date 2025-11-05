@@ -140,8 +140,10 @@ resource "oci_container_instances_container_instance" "container_instance" {
     environment_variables = {
         "secrets_file" = "${var.dbconfig_mount_path}/connection.txt"
         "secret_ocid" = var.vault_secret_ocid
+        "os_bucket" = var.datapump_bucket
+        "datapump_reload_delay" = var.datapump_reload_delay
     }
-
+    
     is_resource_principal_disabled = "false"
     resource_config {
       memory_limit_in_gbs = "1.0"
