@@ -5,7 +5,7 @@
 Image by <a href="http://www.freepik.com">Freepik</a>
     
 <p>
-<img src="CI-architecture.jpg" width="800"/>
+<img src="arch.png" width="800"/>
 
 ## Build containers
 
