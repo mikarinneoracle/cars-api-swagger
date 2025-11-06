@@ -190,21 +190,6 @@
           "type": "AUTHENTICATION_ONLY"
         }
       }
-    },
-    {
-      "backend": {
-        "type": "HTTP_BACKEND",
-        "url": "http://{CI_PRIVATE_IP}:9080/${request.path[path]}"
-      },
-      "methods": [
-        "ANY"
-      ],
-      "path": "/grafana/{path*}",
-      "requestPolicies": {
-        "authorization": {
-          "type": "ANONYMOUS"
-        }
-      }
     }
   ]
 }
