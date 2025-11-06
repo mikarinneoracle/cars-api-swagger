@@ -106,7 +106,7 @@
       "targets": [
         {
           "editorMode": "builder",
-          "expr": "promhttp_metric_handler_requests_total",
+          "expr": "request_total",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -339,5 +339,5 @@
   "timezone": "",
   "title": "Prometheus CPU Metrics",
   "uid": "prom-cpu-metrics",
-  "version": 2
+  "version": 1
 }
