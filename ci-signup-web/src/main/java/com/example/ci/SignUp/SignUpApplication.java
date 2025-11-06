@@ -75,8 +75,8 @@ public class SignUpApplication {
 
 		@PostMapping("/signup/start")
 		public String signup(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
-            requestCount.inc();
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
+                requestCount.inc();
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
 					System.out.println("Signup successful for " + signUpRequest.getUsername());
