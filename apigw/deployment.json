@@ -84,6 +84,36 @@
     {
       "backend": {
         "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:3001/docs/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/cars-200/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}/public/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/public/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
         "url": "http://{CI_PRIVATE_IP}:3002/docs/${request.path[path]}"
       },
       "methods": [
@@ -126,36 +156,6 @@
     },
     {
       "backend": {
-        "type": "HTTP_BACKEND",
-        "url": "http://{CI_PRIVATE_IP}:3001/docs/${request.path[path]}"
-      },
-      "methods": [
-        "ANY"
-      ],
-      "path": "/cars-200/{path*}",
-      "requestPolicies": {
-        "authorization": {
-          "type": "ANONYMOUS"
-        }
-      }
-    },
-    {
-      "backend": {
-        "type": "HTTP_BACKEND",
-        "url": "http://{CI_PRIVATE_IP}/public/${request.path[path]}"
-      },
-      "methods": [
-        "ANY"
-      ],
-      "path": "/public/{path*}",
-      "requestPolicies": {
-        "authorization": {
-          "type": "ANONYMOUS"
-        }
-      }
-    },
-    {
-      "backend": {
         "body": null,
         "headers": [
           {
@@ -188,6 +188,21 @@
       "requestPolicies": {
         "authorization": {
           "type": "AUTHENTICATION_ONLY"
+        }
+      }
+    },
+    {
+      "backend": {
+        "type": "HTTP_BACKEND",
+        "url": "http://{CI_PRIVATE_IP}:9080/${request.path[path]}"
+      },
+      "methods": [
+        "ANY"
+      ],
+      "path": "/grafana/{path*}",
+      "requestPolicies": {
+        "authorization": {
+          "type": "ANONYMOUS"
         }
       }
     }
