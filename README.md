@@ -27,6 +27,16 @@ AUTH_TOKEN
 TENANCY_NAMESPACE
 </pre>
 It uses <code>FRA</code> region for OCIR, i.e. Registry is <code>fra.ocir.io</code>
+<p>
+Note! Create the OCIR repos before running the pipeline:
+<pre>
+fra.ocir.io/$ns/ci-sidecar
+fra.ocir.io/$ns/ci-sidecar-vault
+fra.ocir.io/$ns/ci-sidecar-metrics
+fra.ocir.io/$ns/cars-api
+fra.ocir.io/$ns/ci-signup-web
+</pre>
+where <code>$ns</code> is <code>ns=$(oci os ns get | jq .data | tr -d '"')</code>
 
 ## Deploy CI stack
 
