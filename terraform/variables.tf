@@ -21,36 +21,15 @@ variable "ocir_region" {
 
 variable "sidecar_image" {
   type = string
+  default = "ci-sidecar:1.0.0"
   description = "CI sidecar image e.g. ci-sidecar:1.0.0"
 }
 
 variable "sidecar_vault_image" {
   type = string
+  default = "ci-sidecar-vault:1.0.0"
   description = "CI sidecar for OCI Vault image e.g. ci-sidecar-vault:1.0.0"
 }
-
-#### LIST ALL APP IMAGES HERE ####
-
-variable "app_image_1" {
-  type = string
-  description = "App 1 image e.g. cars-api:1.0.0-free"
-}
-
-variable "app_image_2" {
-  type = string
-  description = "App 2 image e.g. cars-api:2.0.0"
-}
-
-variable "app_image_3" {
-  description = "App 3 image e.g. cars-api:3.0.0"
-}
-
-variable "app_image_4" {
-  type = string
-  description = "App 4 image e.g. ci-signup-web"
-}
-
-##################################
 
 variable "sidecar_metrics_image" {
   type = string
@@ -75,6 +54,33 @@ variable "grafana_image" {
   default = "grafana/grafana:latest"
   description = "Grafana image e.g. grafana/grafana:latest"
 }
+
+#### LIST ALL APP IMAGES HERE ####
+
+variable "app_image_1" {
+  type = string
+  default = "cars-api:1.0.0-free"
+  description = "App 1 image e.g. cars-api:1.0.0-free"
+}
+
+variable "app_image_2" {
+  type = string
+  default = "cars-api:2.0.0"
+  description = "App 2 image e.g. cars-api:2.0.0"
+}
+
+variable "app_image_3" {
+default = "cars-api:3.0.0"
+  description = "App 3 image e.g. cars-api:3.0.0"
+}
+
+variable "app_image_4" {
+  type = string
+  default = "ci-signup-web:1.0.0"
+  description = "App 4 image e.g. ci-signup-web"
+}
+
+##################################
 
 variable "ad_number" {
   type    = number
