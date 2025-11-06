@@ -9,7 +9,7 @@ async function start() {
     console.log("PATH:" + configPath);
     const bucket = process.env.config_bucket;
     console.log("BUCKET:" + bucket);
-    const logOcid = process.env.log_ocid;
+    const reloadDelay = process.env.reload_delay;
     console.log("OS BUCKET CONFIG RELOAD (ms):" + reloadDelay);
 
     //const provider = new common.ConfigFileAuthenticationDetailsProvider("~/.oci/config");
