@@ -17,6 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import redis.clients.jedis.Jedis;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import io.prometheus.metrics.core.metrics.Counter;
+import io.prometheus.metrics.exporter.servlet.jakarta.PrometheusMetricsServlet;
+import io.prometheus.metrics.instrumentation.jvm.JvmMetrics;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,6 +36,10 @@ public class SignUpApplication {
 	private static Jedis jedis;
 	private static String continueUrl = "";
 
+    private static final Counter requestCount = Counter.builder()
+            .name("request_total")
+            .register();
+    
 	public static void main(String[] args) {
 		String redisHost = System.getenv("REDIS_HOST");
 		String redisSsl = System.getenv("REDIS_SSL");
@@ -56,6 +65,7 @@ public class SignUpApplication {
 			System.out.println("Logs output error to " + logFile + " is :" + e.getMessage());
 		}
 		SpringApplication.run(SignUpApplication.class, args);
+        JvmMetrics.builder().register();
 	}
 
 	@Configuration
@@ -65,6 +75,7 @@ public class SignUpApplication {
 
 		@PostMapping("/signup/start")
 		public String signup(HttpServletRequest request, HttpServletResponse response, @ModelAttribute SignUpRequest signUpRequest, RedirectAttributes attributes) {
+            requestCount.inc();
 			if(signUpRequest.getUsername().length() > 0 && signUpRequest.getPassword().length() > 0) {
 				try {
 					jedis.set(signUpRequest.getUsername(), signUpRequest.getPassword());
@@ -106,6 +117,11 @@ public class SignUpApplication {
 			model.addAttribute("continue_target", continue_target);
 			return "signupresult"; // returns the name of the FreeMarker template
 		}
+        
+        @Bean
+        public ServletRegistrationBean<PrometheusMetricsServlet> createPrometheusMetricsEndpoint() {
+            return new ServletRegistrationBean<>(new PrometheusMetricsServlet(), "/metrics/*");
+        }
 	}
 
 	public static class SignUpRequest {
