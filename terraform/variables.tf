@@ -113,6 +113,7 @@ variable "log_file" {
 
 variable "log_header" {
   type    = string
+  default = "Cars-API"
   description = "Application log row header e.g. Cars-API"
 }
 
@@ -193,7 +194,6 @@ variable "metrics_config_mount_path" {
 
 variable "metrics_config_bucket" {
   type    = string
-  default = "metrics-config"
   description = "Prometheus and Grafana config bucket name in Object Storage"
 }
 
