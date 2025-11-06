@@ -27,8 +27,39 @@ AUTH_TOKEN
 TENANCY_NAMESPACE
 </pre>
 It uses <code>FRA</code> region for OCIR, i.e. Registry is <code>fra.ocir.io</code>
+<p>
+Note! Create the OCIR repos before running the pipeline:
+<pre>
+fra.ocir.io/$ns/ci-sidecar
+fra.ocir.io/$ns/ci-sidecar-vault
+fra.ocir.io/$ns/ci-sidecar-metrics
+fra.ocir.io/$ns/cars-api
+fra.ocir.io/$ns/ci-signup-web
+</pre>
+where <code>$ns</code> is <code>ns=$(oci os ns get | jq .data | tr -d '"')</code>
 
 ## Deploy CI stack
+
+Create a VCN with public and private subnet. Deploy the stack to the private subnet by configuring the private subnet OCID to the stack configuration during deploying.
+<p>
+
+In private subnet's security list open the following ports for the public subnet's CIDR:
+<pre>
+80 for NGINX
+3000, 3001, 3002 for Car API versions
+8080 for Sign Up Spring Boot web app
+8090 for Grafana
+9090 for Prometheus
+5432 for OCI Postgresql PaaS database
+6379 for OCI Cache PaaS with Redis
+</pre>
+
+In public subnet's security list open the following ports to Internet (CIDR 0.0.0.0/0) :
+<pre>
+443 for API Gateway
+</pre>
+Then create the API Gateway to the public subnet manually from OCI console.
+<p>
 
 You can deploy the Container Instances stack from below with OCI Resource Manager (Terraform) 
 or clone this repo to localhost and drag-drop the terraform folder to OCI Resource Manager when

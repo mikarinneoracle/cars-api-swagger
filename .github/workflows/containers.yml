@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main", "ci-sidecar-vault-datapump"]
+    branches: [ "main", "prometheus-grafana"]
     paths-ignore:
       - 'README.md'
       - 'www-data/**'
@@ -45,6 +45,10 @@ jobs:
         cd ci-sidecar-vault
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
         docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-vault:1.0.0
+        cd ..
+        cd ci-sidecar-metrics
+        docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-metrics:1.0.0
+        docker push -q fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/ci-sidecar-metrics:1.0.0
         cd ..
         cd fn-authorizer
         docker build . -t fra.ocir.io/${{ secrets.TENANCY_NAMESPACE }}/fn-basicauth:1.1.0

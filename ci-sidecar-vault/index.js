@@ -122,7 +122,7 @@ async function processDataFile(osClient, namespace, bucket, file)
         const client = await pool.connect()
         try {
           await client.query('BEGIN');
-          client.query('DELETE FROM CARS');
+          client.query('DELETE FROM cars');
 
           var data = buffer.toString();
           var values = data.split('\n') // split string to lines

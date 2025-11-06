@@ -21,32 +21,62 @@ variable "ocir_region" {
 
 variable "sidecar_image" {
   type = string
+  default = "ci-sidecar:1.0.0"
   description = "CI sidecar image e.g. ci-sidecar:1.0.0"
 }
 
 variable "sidecar_vault_image" {
   type = string
+  default = "ci-sidecar-vault:1.0.0"
   description = "CI sidecar for OCI Vault image e.g. ci-sidecar-vault:1.0.0"
+}
+
+variable "sidecar_metrics_image" {
+  type = string
+  default = "ci-sidecar-metrics:1.0.0"
+  description = "CI sidecar image e.g. ci-sidecar-metrics:1.0.0"
+}
+
+variable "prometheus_node_exporter_image" {
+  type = string
+  default = "quay.io/prometheus/node-exporter:latest"
+  description = "Prometheus Node Exporter image e.g. quay.io/prometheus/node-exporter:latest"
+}
+
+variable "prometheus_image" {
+  type = string
+  default = "prom/prometheus:main"
+  description = "Prometheus image e.g. prom/prometheus:main"
+}
+
+variable "grafana_image" {
+  type = string
+  default = "grafana/grafana:latest"
+  description = "Grafana image e.g. grafana/grafana:latest"
 }
 
 #### LIST ALL APP IMAGES HERE ####
 
 variable "app_image_1" {
   type = string
+  default = "cars-api:1.0.0-free"
   description = "App 1 image e.g. cars-api:1.0.0-free"
 }
 
 variable "app_image_2" {
   type = string
+  default = "cars-api:2.0.0"
   description = "App 2 image e.g. cars-api:2.0.0"
 }
 
 variable "app_image_3" {
+default = "cars-api:3.0.0"
   description = "App 3 image e.g. cars-api:3.0.0"
 }
 
 variable "app_image_4" {
   type = string
+  default = "ci-signup-web:1.0.0"
   description = "App 4 image e.g. ci-signup-web"
 }
 
@@ -83,6 +113,7 @@ variable "log_file" {
 
 variable "log_header" {
   type    = string
+  default = "Cars-API"
   description = "Application log row header e.g. Cars-API"
 }
 
@@ -100,7 +131,7 @@ variable "www_mount_name" {
 
 variable "www_data_bucket" {
   type    = string
-  description = "Object Storage bucket name"
+  description = "Object Storage bucket name for NGINX WWW data"
 }
 
 variable "create_www_data_bucket" {
@@ -148,4 +179,26 @@ variable "datapump_reload_delay" {
   type    = number
   default = 30000
   description = "Datapump Object Storage data reload interval in ms, use zero for never"
+}
+
+variable "metrics_config_mount_name" {
+  type    = string
+  default = "prometheus_grafana_configs"
+}
+
+variable "metrics_config_mount_path" {
+  type    = string
+  default = "/etc"
+  description = "Prometheus and Grafana config path on volume mount"
+}
+
+variable "metrics_config_bucket" {
+  type    = string
+  description = "Prometheus and Grafana config bucket name in Object Storage"
+}
+
+variable "metrics_config_reload_delay" {
+  type    = number
+  default = 30000
+  description = "Prometheus and Grafana config reload interval in ms, use zero for never"
 }

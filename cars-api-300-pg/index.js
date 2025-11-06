@@ -4,12 +4,14 @@ const express = require('express');
 const app = express();
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const pg = require('pg');
+const pg = require("pg");
+const promClient = require("prom-client");
 
 const API = "300";
 const port = 3002;
 const { Pool } = pg;
 var pool; 
+var register = new promClient.Registry();
 
 const logFile = process.env.log_file == null ? "./app.log" : process.env.log_file;
 console.log("APP LOG: " + logFile);
@@ -33,6 +35,21 @@ process.stdout.write = (chunk, ...args) => {
   return origStdoutWrite(chunk, ...args); // still print to console
 };
 
+// Create custom metrics for a counter
+const counter = new promClient.Counter({
+    name: "counter",
+    help: "Custom counter for Cars API " + API,
+});
+
+var collectDefaultMetrics = promClient.collectDefaultMetrics;
+register.registerMetric(counter);
+promClient.collectDefaultMetrics({
+    app: "Cars API " + API,
+    prefix: 'node_',
+    timeout: 10000,
+    gcDurationBuckets: [0.001, 0.01, 0.1, 1, 2, 5],
+    register
+});
 waitFor(secretsFile);
  
 async function waitFor(configFile) {
@@ -56,6 +73,16 @@ async function waitFor(configFile) {
         }, 1000);
     }
 }
+
+app.get('/metrics', async (_req, res) => {
+  try {
+    res.set('Content-Type', register.contentType);
+    res.end(await register.metrics());
+  } catch (err) {
+    console.log(err);
+    res.status(500).end(err);
+  }
+});
 
 const options = {
   definition: {
@@ -156,6 +183,7 @@ app.use(
  */
 
 app.get('/cars', (req, res) => {
+  counter.inc();
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
   var jsonHdr = { "user": user, "api": API};
   if(pool)
@@ -182,6 +210,7 @@ app.get('/cars', (req, res) => {
 });
 
 app.get('/car/:id', (req, res) => {
+  counter.inc();
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
   var jsonHdr = { "user": user, "api": API};
   if(pool)
@@ -215,6 +244,7 @@ app.get('/car/:id', (req, res) => {
 });
 
 app.get('/price/:name', (req, res) => {
+  counter.inc();
   var user = req.headers['username'] == null ? "-" : req.headers['username'];
   var jsonHdr = { "user": user, "api": API};
   if(pool)
