@@ -48,7 +48,7 @@ In private subnet's security list open the following ports for the public subnet
 80 for NGINX
 3000, 3001, 3002 for Car API versions
 8080 for Sign Up Spring Boot web app
-8090 for Grafana
+8090 for Grafana (as in <code>grafana.ini</code> under <code>ci-sidecar-metrics/object-storage/grafana</code>)
 9090 for Prometheus
 5432 for OCI Postgresql PaaS database
 6379 for OCI Cache PaaS with Redis
