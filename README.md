@@ -60,6 +60,10 @@ In public subnet's security list open the following ports to Internet (CIDR 0.0.
 </pre>
 Then create the API Gateway to the public subnet manually from OCI console.
 <p>
+    
+To review Grafana dashboards with Prometheus metrics can create a Windows VM for instance in public subnet
+and use it to review Grafana in port 8090 of the CI private IP address using a browser.
+<p>
 
 You can deploy the Container Instances stack from below with OCI Resource Manager (Terraform) 
 or clone this repo to localhost and drag-drop the terraform folder to OCI Resource Manager when
